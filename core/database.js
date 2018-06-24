@@ -11,21 +11,47 @@ class Database {
 
 		Unsure.setActiveFile('_data/stats.json')
 		Unsure.Edit("lastRunDate", new Date().toLocaleString())
+		Unsure.saveFile().then(data => {
+			// console.log(data)
+		}).catch(err => {
+			console.log(err)
+		})
 	}
-	cleanup(options, err) {
-		Unsure.setActiveFile('_data/stats.json')
-		let quitTimes = Unsure.Query("quitTimes")
-    	if (err) console.log(err.stack);
-		let entry = {
-			date: new Date().toLocaleString(),
-			reason: "exit"
-		}
-		quitTimes.push(entry)
-		Unsure.Edit("quitTimes", quitTimes)
-		console.log(Unsure.HOME)
+	PrepareToQuit() {
+		// Save all files before exit
+
 		Unsure.saveFile(options)
-		setTimeout(process.exit, 1000)
+	}
+
+
+	// save all IP connections + date of visit for analytics
+	RecordConnection(date, ip_address) {
+		let entry = {
+			date: date,
+			remoteAddress: ip_address
+		}
+		Unsure.setActiveFile('_data/stats.json')
+		let connections = Unsure.Query("connections")
+		connections.push(entry)
+		Unsure.Edit("connections", connections)
+		Unsure.saveFile().then(data => {
+			// console.log(data)
+		}).catch(err => {
+			console.log(err)
+		})
 	}
 }
 
 module.exports = new Database()
+
+
+// function exitHandler(options, err) {
+//     if (options.cleanup) console.log('clean');
+//     if (err) console.log(err.stack);
+//     if (options.exit) process.exit();
+// }
+
+
+// save info to stats.json when we exit
+// process.on('SIGINT', db.cleanup.bind(null, {exit:true}));
+// process.on('exit', db.cleanup.bind(null,{cleanup:true}));

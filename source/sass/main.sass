@@ -1,0 +1,155 @@
+@import "variables.sass"
+
+html, body
+	width: 100%
+	height: 100%
+	margin: 0
+	padding: 0
+	// font-family: 'Markazi Text', serif;
+	font-family: 'Source Sans Pro', sans-serif;
+
+*
+	// border: 1px solid rgba(1, 0, 0, 0.5) !important
+	box-sizing: border-box
+
+div.grid-container
+	width: 100%
+	height: 100%
+	display: grid
+	grid-template-columns: [sidebar] 90px [negative-space] 20px [center] auto [image] 50vw
+	grid-template-rows: [padding] $padding [header] 4vh [splash] auto [row] $padding [padding] $padding
+
+#SHADE
+	z-index: 10
+	width: 100%
+	height: 100%
+	position: fixed
+	top: 0
+	left: 0
+	background: rgba(0, 0, 0, 0.3)
+	opacity: 0
+	visibility: hidden
+	transition: opacity 200ms ease
+
+
+.sidebar
+	grid-column: sidebar
+	grid-row: 1 / 6
+header
+	z-index: 1000
+	grid-column: center
+	grid-row: header
+	display: flex
+
+	.title
+		font-family: 'Roboto', sans-serif
+		font-weight: 700
+		font-size: 4vh
+		line-height: 4vh
+
+	.menu
+		flex: 1
+
+
+	#MENU
+		position: fixed
+		top: $padding
+		left: 0
+		width: 90px
+		height: 4vh
+		line-height: 4vh
+		text-align: center
+
+
+	#SEARCH
+		opacity: 0.6
+		line-height: 4vh
+		width: 10%
+		text-align: right
+
+	.search
+		opacity: 0.6
+		line-height: 4vh
+		width: 55%
+		padding-left: 1vh
+
+		input
+			font-size: 2.5vh
+			height: 4vh
+			line-height: 4vh
+			width: 100%
+			border: none
+
+		input:focus
+			outline: 0px black
+		
+
+.splash
+	grid-column: center
+	grid-row: splash
+footer
+	grid-column: center
+	grid-row: 4
+
+.image
+	grid-column: image
+	grid-row: 1 / 6
+	padding: $padding
+	display: flex
+
+	.inset
+		width: 100%
+		background-image: url("../../public/img/newyork.jpg")
+		background-size: cover
+		box-shadow: 0
+		transition: box-shadow 300ms ease-out
+
+// Search and Menu
+
+.menu-grid
+	z-index: 100
+	position: fixed
+	top: -$pulldown-height * 2
+	left: 0
+	width: 100%
+	height: $pulldown-height * 2
+	background: white
+	transition: top 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	display: grid
+	grid-template-columns: [padding-start] 110px repeat(5, 20fr) [padding-end] 10vw
+	grid-template-rows: [top] 50fr [bottom] 50fr
+	padding-bottom: 3vh
+
+	.parent
+		grid-row: bottom
+		display: flex
+		flex-direction: column
+		justify-content: flex-end
+		padding-left: 1.5vh
+		padding-right: 1.5vh
+
+		.rectangle
+			width: 100%
+			background: antiquewhite
+			height: 10vh
+			border-radius: .5vh
+	.parent#c0
+		grid-column: 2
+	.parent#c1
+		grid-column: 3
+	.parent#c2
+		grid-column: 4
+	.parent#c3
+		grid-column: 5
+	.parent#c4
+		grid-column: 6
+
+.search-grid
+	z-index: 101
+	position: fixed
+	top: -$pulldown-height * 2
+	left: 0
+	width: 100%
+	height: $pulldown-height * 2
+	background: white
+	transition: top 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
