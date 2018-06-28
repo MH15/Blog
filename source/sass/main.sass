@@ -1,12 +1,13 @@
 @import "variables.sass"
+@import "splash.sass"
 
 html, body
 	width: 100%
 	height: 100%
 	margin: 0
 	padding: 0
-	// font-family: 'Markazi Text', serif;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Markazi Text', serif;
+	// font-family: 'Source Sans Pro', sans-serif;
 
 *
 	// border: 1px solid rgba(1, 0, 0, 0.5) !important
@@ -16,8 +17,8 @@ div.grid-container
 	width: 100%
 	height: 100%
 	display: grid
-	grid-template-columns: [sidebar] 90px [negative-space] 20px [center] auto [image] 50vw
-	grid-template-rows: [padding] $padding [header] 4vh [splash] auto [row] $padding [padding] $padding
+	grid-template-columns: [sidebar] $sidebar-width [negative-space-1] 2.6vw [center] auto [negative-space-2] 5.2vw [image] 50vw
+	grid-template-rows: [padding] $padding [header] $title-height [splash] auto [row] $padding [padding] $padding
 
 #SHADE
 	z-index: 10
@@ -35,6 +36,22 @@ div.grid-container
 .sidebar
 	grid-column: sidebar
 	grid-row: 1 / 6
+	display: grid
+	grid-template-columns: 100fr
+	grid-template-rows: [padding] $title-height [icon] 6vh [lower] auto
+
+
+	.line
+		width: 2px
+		background: $sidebar-line-color
+		height: 100%
+		grid-column: 1
+		margin: 0 auto
+	.top
+		grid-row: padding
+	.bottom
+		grid-row: lower
+
 header
 	z-index: 1000
 	grid-column: center
@@ -42,10 +59,10 @@ header
 	display: flex
 
 	.title
-		font-family: 'Roboto', sans-serif
+		font-family: 'Markazi Text', serif;
 		font-weight: 700
-		font-size: 4vh
-		line-height: 4vh
+		font-size: $title-height
+		line-height: $title-height
 
 	.menu
 		flex: 1
@@ -55,41 +72,51 @@ header
 		position: fixed
 		top: $padding
 		left: 0
-		width: 90px
-		height: 4vh
-		line-height: 4vh
+		width: $sidebar-width
+		height: $title-height
+		line-height: $title-height
 		text-align: center
 
 
 	#SEARCH
 		opacity: 0.6
-		line-height: 4vh
+		line-height: $title-height
 		width: 10%
 		text-align: right
 
 	.search
-		opacity: 0.6
-		line-height: 4vh
+		opacity: 1
+		line-height: $title-height
 		width: 55%
 		padding-left: 1vh
 
 		input
-			font-size: 2.5vh
-			height: 4vh
-			line-height: 4vh
+			opacity: 0.9
+			font-size: 2.8vh
+			height: $title-height
+			line-height: $title-height
 			width: 100%
 			border: none
+			font-family: 'Markazi Text', serif;
 
 		input:focus
 			outline: 0px black
 		
 
-.splash
-	grid-column: center
-	grid-row: splash
+
 footer
 	grid-column: center
 	grid-row: 4
+	display: flex
+	justify-content: space-between
+
+
+	.page-number
+		flex: 1
+		text-align: center
+		font-size: 2.3vh
+
+
 
 .image
 	grid-column: image

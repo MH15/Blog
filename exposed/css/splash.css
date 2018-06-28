@@ -63,3 +63,44 @@ a:hover {
 a:active {
   opacity: 1;
   transform: scale(0.95); }
+
+.splash {
+  grid-column: center;
+  grid-row: splash;
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+  overflow: hidden; }
+
+.splash-wrapper {
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  min-width: 80%;
+  transition: opacity 400ms ease, left 800ms ease;
+  position: relative;
+  margin: 5%;
+  opacity: 0; }
+
+.splash-wrapper.active {
+  opacity: 1;
+  visibility: visible; }
+
+.splash-details {
+  display: flex;
+  width: 100%;
+  align-items: center; }
+  .splash-details .author {
+    flex: 1; }
+  .splash-details .read-time {
+    width: auto;
+    height: 5vh;
+    line-height: 5vh;
+    border-radius: 2.5vh;
+    border: 1px solid gray;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-bottom: 0;
+    font-size: 2.3vh; }

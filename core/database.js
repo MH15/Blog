@@ -40,6 +40,20 @@ class Database {
 			console.log(err)
 		})
 	}
+
+	RetrievePage(page_title) {
+		Unsure.setActiveFile('_data/data.json')
+		let pages_array = Unsure.Query("pages")
+		if (pages_array.includes(page_title)) {
+			Unsure.loadFile(`_data/pages/${page_title}.json`)
+			Unsure.setActiveFile(`_data/pages/${page_title}.json`)
+			
+			let query = Unsure.Query('.')
+			return query
+		} else {
+			return -1
+		}
+	}
 }
 
 module.exports = new Database()

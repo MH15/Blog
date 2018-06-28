@@ -1,0 +1,38 @@
+{
+	"title": "Panel",
+  "url": "/",
+  "date_published": "2018-6-21 19:46:53",
+  "date_edited": "2018-6-21 19:46:53",
+  "content": "Markdown",
+
+  "highlights": [
+    {
+      "title": "Article about",
+      "last_word": "thingy",
+      "author": "Peter Hall",
+      "author_url": "peter-hall",
+      "date_published": "2018-6-22 19:46:53",
+      "read_time": 5
+
+    },
+    {
+      "title": "2nd piece of",
+      "last_word": "pie",
+      "author": "Matthew Hall",
+      "author_url": "matthew-hall",
+      "date_published": "2018-6-22 19:46:53",
+      "read_time": 7
+
+    },
+    {
+      "title": "Ohh hii",
+      "last_word": "Marrhk",
+      "author": "Tommy Wisseu",
+      "author_url": "tommy-wisseu",
+      "date_published": "2018-6-22 19:46:53",
+      "read_time": 12
+
+    }
+  ]
+
+}

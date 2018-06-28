@@ -1,14 +1,77 @@
 $padding: 5vh
+$sidebar-width: 6vw
 $pulldown-height: 40vh
+$sidebar-line-color: #EEE
+$title-height: 4vh
 
 .material-icons
 	cursor: pointer
+	transition: all ease 200ms
+	transform-origin: center
+	display: inline-block
+
+.material-icons:hover
+	opacity: 0.6
+	transform: scale(1.05)
+.material-icons:active
+	opacity: 1
+	transform: scale(0.95)
+
 
 
 
 input::placeholder
-	opacity: 1
-	font-size: 3vh
+	opacity: 0.6
+	font-size: 2.8vh
 	color: black
-	font-size: 2.5vh
-	line-height: 4vh
+	line-height: $title-height
+	font-family: 'Markazi Text', serif;
+
+input:focus::placeholder
+	opacity: 0.9
+
+h1
+	font-size: 5vh
+	margin: 0
+	margin-bottom: 0.2vh
+	color: rgb(124, 124, 124)
+	font-family: 'Markazi Text', serif
+
+h1.accent
+	color: rgb(0, 0, 0)
+	margin-bottom: 0.3vh
+
+h1.fade
+	color: gray
+
+h3
+	font-size: 2.3vh
+	margin: 0
+	// margin-bottom: 0.3vh
+	color: black
+	font-weight: 400
+
+h3.accent
+	color: green
+
+h3.fade
+	color: gray
+
+
+a
+	color: inherit
+	font-size: inherit
+	font-weight: inherit
+	transition: all ease 200ms
+	transform-origin: center
+	display: inline-block
+
+a:hover
+	opacity: 0.6
+	transform: scale(1.05)
+
+a:active
+	opacity: 1
+	transform: scale(0.95)
+
+

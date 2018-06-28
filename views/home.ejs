@@ -3,7 +3,7 @@
   <meta http-equiv=”X-UA-Compatible” content=”IE=edge”>
   <meta name=”viewport” content=”width=device-width, initial-scale=1">
 
-  <title>Panel</title>
+  <title><%= title %></title>
 
   <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="public/css/main.css">
@@ -16,7 +16,10 @@
 
 <body>
 <div class="grid-container">
-	<div class="sidebar"></div>
+	<div class="sidebar">
+		<div class="line top"></div>
+		<div class="line bottom"></div>
+	</div>
 	<header>
 		<div class="title">Panel.</div>
 			<i class="material-icons" id="MENU">menu</i>
@@ -28,11 +31,31 @@
 		</div>
 
 	</header>
-	<div class="splash">yeet</div>
+	<div class="splash">
+		<!-- <div class="shell"> -->
+			<% for(let i = 0; i < highlights.length; i++) { %>
+			<% let active = ""%>
+			<% if (i == 0) {active = " active"}%>
+			<div class="<%= "splash-wrapper" + active %>" id="<%= 'splash_item_' + i %>">
+				<h1><%= highlights[i].title %></h1>
+				<h1 class="accent"><%= highlights[i].last_word %></h1>
+				<div class="splash-details">
+					<div class="author">
+						<h3 class="fade">Written by</h3>
+						<h3><a href="<%= "https://panelmag.com/author/" + highlights[i].author_url %>"><%= highlights[i].author %></a></h3>
+					</div>
+					<div class="read-time">5 min read</div>
+				</div>
+			</div>
+			<%}%>
+		<!-- </div> -->
+	</div>
 	<footer>
-		<i class="material-icons">arrow_back_ios</i>
-		 1 of 3 
-		<i class="material-icons">arrow_forward_ios</i>
+		<i class="material-icons" id="LEFT">arrow_back_ios</i>
+		<div class="page-number">
+			<span class="slide-index">1</span> of <%= highlights.length %>
+		</div>
+		<i class="material-icons" id="RIGHT">arrow_forward_ios</i>
 	</footer>
 	<div class="image">
 		<div class="inset"></div>

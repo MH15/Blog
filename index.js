@@ -30,17 +30,17 @@ init();
 server.route({
 	method: 'GET',
 	path: '/',
-	handler: async (request, h) => {	
+	handler: async (request, h) => {
 		db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
 
-		// TODO: handle this shite
-		// if (request.path == "/")
-		console.log(request.path)
-
-		const page_body = await render("views/home.ejs", {a: "HOME"})
+		let retrieved_page = db.RetrievePage('home')
+		console.log(retrieved_page)
+		const page_body = await render("views/home.ejs", retrieved_page)
 		return page_body
     }
 });
+
+
 server.route({
 	method: 'GET',
 	path: '/article/{name}',
@@ -51,7 +51,10 @@ server.route({
 		// if (request.path == "/")
 		console.log(request.path)
 
-		const page_body = await render("views/index.ejs", {a: "ARTICLE"})
+		let retrieved_page = db.RetrievePage(request.params.name)
+		console.log(retrieved_page)
+
+		const page_body = await render("views/index.ejs", {a: retrieved_page.content})
 		return page_body
     }
 });
