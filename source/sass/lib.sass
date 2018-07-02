@@ -1,5 +1,9 @@
+// included in all pages
+// universal items such as
+// 	[menu, search, outer grid]
+// keep it light
+
 @import "variables.sass"
-@import "splash.sass"
 
 html, body
 	width: 100%
@@ -17,8 +21,8 @@ div.grid-container
 	width: 100%
 	height: 100%
 	display: grid
-	grid-template-columns: [sidebar] $sidebar-width [negative-space-1] 2.6vw [center] auto [negative-space-2] 5.2vw [image] 50vw
-	grid-template-rows: [padding] $padding [header] $title-height [splash] auto [row] $padding [padding] $padding
+	grid-template-columns: [sidebar] $sidebar-width [negative-space-1] 2.6vw [else] auto [negative-space-2] 5.2vw [image] 50vw
+	grid-template-rows: [padding] $padding [header] $title-height [all] auto [footer] $padding [padding] $padding
 
 #SHADE
 	z-index: 10
@@ -31,7 +35,6 @@ div.grid-container
 	opacity: 0
 	visibility: hidden
 	transition: opacity 200ms ease
-
 
 .sidebar
 	grid-column: sidebar
@@ -54,7 +57,7 @@ div.grid-container
 
 header
 	z-index: 1000
-	grid-column: center
+	grid-column: else
 	grid-row: header
 	display: flex
 
@@ -97,39 +100,22 @@ header
 			line-height: $title-height
 			width: 100%
 			border: none
-			font-family: 'Markazi Text', serif;
+			font-family: 'Markazi Text', serif
+			background: transparent
 
 		input:focus
 			outline: 0px black
-		
-
-
-footer
-	grid-column: center
-	grid-row: 4
-	display: flex
-	justify-content: space-between
-
-
-	.page-number
-		flex: 1
-		text-align: center
-		font-size: 2.3vh
+div.else
+	grid-row: all / 5
+	grid-column: else / 6
+	width: 100%
+	height: 100%
+	// grid-template-columns & grid-template-rows defined in included .ejs file
 
 
 
-.image
-	grid-column: image
-	grid-row: 1 / 6
-	padding: $padding
-	display: flex
 
-	.inset
-		width: 100%
-		background-image: url("../../public/img/newyork.jpg")
-		background-size: cover
-		box-shadow: 0
-		transition: box-shadow 300ms ease-out
+
 
 // Search and Menu
 

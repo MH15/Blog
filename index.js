@@ -20,6 +20,37 @@ const init = async () => {
 		// public files
 		plugin: require('inert')
 	})
+
+	// serving public files
+	server.route({  
+	  method: 'GET',
+	  path: '/public/css/{file*}',
+	  handler: {
+	    directory: { 
+	      path: 'exposed/css'
+	    }
+	  }
+	})
+	server.route({  
+	  method: 'GET',
+	  path: '/public/js/{file*}',
+	  handler: {
+	    directory: { 
+	      path: 'exposed/js'
+	    }
+	  }
+	})
+	server.route({  
+	  method: 'GET',
+	  path: '/public/img/{file*}',
+	  handler: {
+	    directory: { 
+	      path: 'exposed/img'
+	    }
+	  }
+	})
+
+	
 	await server.start()
 	console.log(`Server running at: ${server.info.uri}`);
 };
@@ -32,10 +63,12 @@ server.route({
 	path: '/',
 	handler: async (request, h) => {
 		db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
-
+		// console.log(__dirname)
 		let retrieved_page = db.RetrievePage('home')
-		console.log(retrieved_page)
-		const page_body = await render("views/home.ejs", retrieved_page)
+		const page_body = await render("views/template.ejs", {
+			e: retrieved_page,
+			dirname: __dirname
+		})
 		return page_body
     }
 });
@@ -52,42 +85,17 @@ server.route({
 		console.log(request.path)
 
 		let retrieved_page = db.RetrievePage(request.params.name)
-		console.log(retrieved_page)
 
-		const page_body = await render("views/index.ejs", {a: retrieved_page.content})
+		const page_body = await render("views/template.ejs", {
+			e: retrieved_page,
+			dirname: __dirname
+		})
 		return page_body
     }
 });
 
 
-// serving public files
-server.route({  
-  method: 'GET',
-  path: '/public/css/{file*}',
-  handler: {
-    directory: { 
-      path: 'exposed/css'
-    }
-  }
-})
-server.route({  
-  method: 'GET',
-  path: '/public/js/{file*}',
-  handler: {
-    directory: { 
-      path: 'exposed/js'
-    }
-  }
-})
-server.route({  
-  method: 'GET',
-  path: '/public/img/{file*}',
-  handler: {
-    directory: { 
-      path: 'exposed/img'
-    }
-  }
-})
+
 
 
 

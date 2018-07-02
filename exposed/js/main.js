@@ -12,10 +12,12 @@ UI.shade.addEventListener('mousedown', () => {
 	UI.CloseAny()
 })
 
-UI.slide_left_button.addEventListener('mousedown', () => {
-	UI.Slide("left")
-})
+if (UI.slide_left_button) {
+	UI.slide_left_button.addEventListener('mousedown', () => {
+		UI.Slide("left")
+	})
 
-UI.slide_right_button.addEventListener('mousedown', () => {
-	UI.Slide("right")
-})
+	UI.slide_right_button.addEventListener('mousedown', () => {
+		UI.Slide("right")
+	})
+}

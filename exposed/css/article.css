@@ -17,15 +17,17 @@ input::placeholder {
   font-size: 2.8vh;
   color: black;
   line-height: 4vh;
-  font-family: 'Markazi Text', serif; }
+  font-family: 'Markazi Text', serif;
+  background: transparent; }
 
 input:focus::placeholder {
   opacity: 0.9; }
 
 h1 {
-  font-size: 5vh;
+  font-size: 6vh;
   margin: 0;
-  margin-bottom: 0.2vh;
+  margin-bottom: 1.5vh;
+  line-height: 7vh;
   color: #7c7c7c;
   font-family: 'Markazi Text', serif; }
 
@@ -63,3 +65,47 @@ a:hover {
 a:active {
   opacity: 1;
   transform: scale(0.95); }
+
+a.article-url {
+  font-size: 6vh;
+  margin: 0;
+  margin-bottom: 1.5vh;
+  line-height: 7vh;
+  transition: all ease 150ms;
+  color: black;
+  font-family: 'Markazi Text', serif;
+  text-decoration: none; }
+
+a.article-url:hover {
+  transform: none;
+  opacity: 1;
+  color: #d55c04; }
+
+a.article-url:active {
+  transform: none;
+  opacity: 1; }
+
+.else {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 8.6vw; }
+  .else h1 {
+    color: black; }
+
+.article-details {
+  display: flex;
+  width: 25%;
+  align-items: center; }
+  .article-details .author {
+    flex: 1; }
+  .article-details .read-time {
+    width: auto;
+    height: 5vh;
+    line-height: 5vh;
+    border-radius: 2.5vh;
+    border: 1px solid gray;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-bottom: 0;
+    font-size: 2.3vh; }
