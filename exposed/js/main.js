@@ -21,3 +21,12 @@ if (UI.slide_left_button) {
 		UI.Slide("right")
 	})
 }
+
+
+document.addEventListener("scroll", () => {
+	var scrollTop = document.documentElement["scrollTop"] || document.body["scrollTop"];
+	var scrollBottom = (document.documentElement["scrollHeight"] || document.body["scrollHeight"]) - document.documentElement.clientHeight;
+	scrollPercent = scrollTop / scrollBottom * 100 + "%";
+	console.log(scrollPercent)
+	document.getElementById("progress").style.setProperty("width", scrollPercent);
+},{ passive: true })

@@ -1,0 +1,20 @@
+footer.article {
+  width: 45vw;
+  height: 9.5vh;
+  background: transparent;
+  margin-top: 6vh;
+  font-family: 'Source Sans Pro';
+  display: flex;
+  font-size: 1.9vh; }
+  footer.article .descriptor {
+    width: 26%;
+    line-height: 2; }
+    footer.article .descriptor .fade {
+      opacity: 0.55; }
+  footer.article .field {
+    flex: 1;
+    text-align: left;
+    line-height: 2;
+    cursor: pointer; }
+    footer.article .field a {
+      display: block; }

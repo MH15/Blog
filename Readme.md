@@ -12,3 +12,7 @@ panelmag.com
 
 	/admin
 		/edit
+
+
+## Domain names
+Either `politinc.co` or `panelmag.com`.

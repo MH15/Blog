@@ -85,6 +85,24 @@ a.article-url:active {
   transform: none;
   opacity: 1; }
 
+a.footer {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  transition: all ease 200ms;
+  transform-origin: center;
+  display: inline-block;
+  text-decoration: none; }
+
+a.footer:hover {
+  text-decoration: underline;
+  opacity: 1;
+  transform: none; }
+
+a.footer:active {
+  transform: none;
+  opacity: 0.6; }
+
 .else {
   display: flex;
   flex-direction: column;
@@ -92,6 +110,15 @@ a.article-url:active {
   padding-right: 8.6vw; }
   .else h1 {
     color: black; }
+
+#progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  border: none;
+  width: 3px;
+  background: rgba(46, 46, 46, 0.81); }
 
 div.header {
   width: 100%;

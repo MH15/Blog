@@ -16,11 +16,17 @@ gulp.task('sass:article', function () {
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./exposed/css'))
 })
+gulp.task('sass:footer', function () {
+  return gulp.src('./source/sass/footer.sass')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./exposed/css'))
+})
  
 gulp.task('sass:watch', function () {
   gulp.watch('./source/sass/**/*.sass', [
   	'sass:lib',
   	'sass:home',
-  	'sass:article'
+  	'sass:article',
+    'sass:footer'
   ]);
 });
