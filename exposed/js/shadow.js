@@ -4,7 +4,6 @@ let inset = document.querySelectorAll(".inset")
 inset.forEach(img => {
 	var imgTile = new Image()
 	imgTile.src = window.getComputedStyle(img).backgroundImage.match(/\((.*?)\)/)[1].replace(/('|")/g,'')
-	console.log(imgTile.src)
 	imgTile.onload = function() {
 		let colors = colorThief.getColor(imgTile)
 		let r = colors[0]
@@ -19,7 +18,6 @@ rgba(${r}, ${g}, ${b}, ${a}) 0px 16px 16px,
 rgba(${r}, ${g}, ${b}, ${a}) 0px 32px 32px,
 rgba(${r}, ${g}, ${b}, ${a}) 0px 64px 64px
 `
-		console.log(boxShadowString)
 
 		img.addEventListener('mouseenter', () => {
 			hoverOn(boxShadowString, img)

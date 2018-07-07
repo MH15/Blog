@@ -11,10 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",
+    "fuse.js": "^3.2.1",
     "hapi": "^17.5.1",
     "hapi-pino": "^4.0.4",
     "inert": "^5.1.0",
-    "unsure": "^0.1.2"
+    "unsure": "^0.1.2",
+    "wade": "^0.3.3"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

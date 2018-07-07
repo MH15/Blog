@@ -1,6 +1,7 @@
 const Hapi = require('hapi')
 const ejs = require('ejs')
 const unsure = require('unsure')
+const Fuse = require('fuse.js')
 global.Unsure = new unsure(__dirname)
 global.dirname = __dirname
 
@@ -62,7 +63,7 @@ server.route({
 	method: 'GET',
 	path: '/',
 	handler: async (request, h) => {
-		db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
+		// db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
 		// console.log(__dirname)
 		let retrieved_page = db.RetrievePage('home')
 		const page_body = await render("views/template.ejs", {
@@ -78,7 +79,7 @@ server.route({
 	method: 'GET',
 	path: '/article/{name}',
 	handler: async (request, h) => {	
-		db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
+		// db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
 
 		// TODO: handle this shite
 		// if (request.path == "/")
@@ -94,6 +95,62 @@ server.route({
     }
 });
 
+let books = [{
+  title: "Old Man's War fiction",
+  author: 'John X',
+  tags: ['war']
+}, {
+  title: 'Right Ho Jeeves',
+  author: 'P.D. Mans',
+  tags: ['fiction', 'war']
+}]
+
+let options = {
+  shouldSort: true,
+  threshold: 0.3,
+  keys: [{
+    name: 'title',
+    weight: 0.8
+  }, {
+    name: 'tags',
+    weight: 0.5
+  }, {
+    name: 'author',
+    weight: 0.4
+  }]
+};
+
+// TODO: Create a section that runs on a specified interval
+// to ensure that all data + db are up to date
+let fuse;
+
+async function search() {
+	let data = await db.CreateSearchData()
+	fuse = new Fuse(data, options)
+
+}
+
+search()
+
+// search box on all pages
+// recieve query string and send back array of matching things
+server.route({
+	method: 'POST',
+	path: '/search',
+	handler: async (request, h) => {	
+		// db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
+		
+		
+		const outputs = fuse.search(request.payload.query)
+		console.log(outputs)
+		// TODO: handle this shite
+		// if (request.path == "/")
+		// let payload = JSON.parse(request.payload)
+
+
+		return outputs
+    }
+});
 
 
 

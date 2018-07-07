@@ -19,7 +19,6 @@ class Database {
 	}
 	PrepareToQuit() {
 		// Save all files before exit
-
 		Unsure.saveFile(options)
 	}
 
@@ -53,6 +52,46 @@ class Database {
 		} else {
 			return -1
 		}
+	}
+
+	CreateSearchData() {
+		return new Promise((resolve, reject) => {
+			// get array of pages
+			Unsure.loadFile('_data/data.json')
+			Unsure.setActiveFile('_data/data.json')
+			let pages = Unsure.Query('pages')
+			// load current search data
+			Unsure.loadFile('_data/search.json')
+			Unsure.setActiveFile('_data/search.json')
+			// let search_data = Unsure.Query('search_data')
+			let search_data = []
+			// load page data file for each page_string
+			// + create entry in search_data.json
+			pages.forEach(page_string => {
+				let page_data = this.RetrievePage(page_string)
+				// add entry into the search data
+				// ignore Home page + do not add to search results
+				if (page_data.url == "/") return
+				console.log(page_data.article_url)
+				search_data.push({
+					title: page_data.title,
+					article_url: page_data.url,
+					author: page_data.author,
+					author_url: page_data.author_url,
+					tags: page_data.tags,
+					date_edited: page_data.date_edited
+				})
+			})
+			Unsure.setActiveFile('_data/search.json')
+			Unsure.Edit("search_data", search_data)
+			Unsure.saveFile().then(data => {
+				// expose to main script
+				resolve(search_data)
+			}).catch(err => {
+				console.log(err)
+				reject(err)
+			})
+		})
 	}
 }
 

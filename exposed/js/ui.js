@@ -5,6 +5,7 @@ class ui {
 		this.shade = document.querySelector("#SHADE")
 		this.menu_grid = document.querySelector(".menu-grid")
 		this.search_grid = document.querySelector(".search-grid")
+		this.search_results = document.querySelector(".search-grid .results")
 
 		this.slide_left_button = document.querySelector("#LEFT")
 		this.slide_right_button = document.querySelector("#RIGHT")

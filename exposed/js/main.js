@@ -1,4 +1,5 @@
 let UI = new ui()
+let Server = new server()
 
 UI.menu_button.addEventListener('mousedown', () => {
 	UI.ToggleMenu()
@@ -30,3 +31,53 @@ document.addEventListener("scroll", () => {
 	console.log(scrollPercent)
 	document.getElementById("progress").style.setProperty("width", scrollPercent);
 },{ passive: true })
+
+
+
+Server.search_box.addEventListener('input', async () => {
+	UI.ToggleSearch()
+	let search_items = await Server.Search(Server.search_box.value)
+	
+	// clear previously rendered results
+	while (UI.search_results.hasChildNodes()) {
+		UI.search_results.removeChild(UI.search_results.lastChild);
+	}
+
+	search_items = search_items.slice(0, 3)
+	search_items.forEach(search_item => {
+		console.log(search_item)
+		// add item
+		let item = document.createElement('div')
+		item.classList.add('search_result')
+		// add title
+		let title = document.createElement('a')
+		title.classList.add('title')
+		title.innerHTML = search_item.title
+		title.href = window.location.href + 'article/' + search_item.article_url
+		item.appendChild(title)
+		// add author
+		let author = document.createElement('a')
+		author.classList.add('author')
+		author.classList.add('default')
+		author.innerHTML = search_item.author
+		author.href = window.location.href + 'author/' + search_item.article_url
+		item.appendChild(author)
+		// add date edited
+		let date_edited = document.createElement('div')
+		date_edited.classList.add('date_edited')
+		date_edited.innerHTML = search_item.date_edited
+		item.appendChild(date_edited)
+
+
+		UI.search_results.appendChild(item)
+
+	})
+})
+
+
+
+
+
+
+
+

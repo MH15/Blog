@@ -1,0 +1,36 @@
+{
+    "search_data": [
+        {
+            "title": "Article about that one thingy",
+            "article_url": "thingy",
+            "author": "Peter Hall",
+            "author_url": "peter-hall",
+            "tags": [
+                "test",
+                "north"
+            ],
+            "date_edited": "2018-6-21 19:46:53"
+        },
+        {
+            "title": "Brits",
+            "article_url": "brit",
+            "author": "Matthew Hall",
+            "author_url": "matthew-hall",
+            "tags": [
+                "brit",
+                "mate"
+            ],
+            "date_edited": "2018-7-2 19:46:53"
+        },
+        {
+            "title": "Second Piece",
+            "article_url": "brit",
+            "author": "Matthew Hall",
+            "tags": [
+                "second",
+                "article"
+            ],
+            "date_edited": "2018-7-2 19:46:53"
+        }
+    ]
+}
