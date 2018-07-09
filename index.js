@@ -72,7 +72,7 @@ server.route({
 		})
 		return page_body
     }
-});
+})
 
 
 server.route({
@@ -93,17 +93,7 @@ server.route({
 		})
 		return page_body
     }
-});
-
-let books = [{
-  title: "Old Man's War fiction",
-  author: 'John X',
-  tags: ['war']
-}, {
-  title: 'Right Ho Jeeves',
-  author: 'P.D. Mans',
-  tags: ['fiction', 'war']
-}]
+})
 
 let options = {
   shouldSort: true,
@@ -120,17 +110,16 @@ let options = {
   }]
 };
 
-// TODO: Create a section that runs on a specified interval
-// to ensure that all data + db are up to date
+// TODO: Create a section that runs on a specified time 
+// interval to ensure that all data + db are up to date
 let fuse;
 
-async function search() {
+async function long_term_update() {
 	let data = await db.CreateSearchData()
 	fuse = new Fuse(data, options)
-
 }
 
-search()
+long_term_update()
 
 // search box on all pages
 // recieve query string and send back array of matching things
@@ -140,21 +129,13 @@ server.route({
 	handler: async (request, h) => {	
 		// db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
 		
-		
 		const outputs = fuse.search(request.payload.query)
-		console.log(outputs)
 		// TODO: handle this shite
 		// if (request.path == "/")
 		// let payload = JSON.parse(request.payload)
-
-
 		return outputs
     }
 });
-
-
-
-
 
 process.on('unhandledRejection', (err) => {
 	console.log(err);

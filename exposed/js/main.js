@@ -23,12 +23,11 @@ if (UI.slide_left_button) {
 	})
 }
 
-
+// Top bar scroll indicator
 document.addEventListener("scroll", () => {
 	var scrollTop = document.documentElement["scrollTop"] || document.body["scrollTop"];
 	var scrollBottom = (document.documentElement["scrollHeight"] || document.body["scrollHeight"]) - document.documentElement.clientHeight;
 	scrollPercent = scrollTop / scrollBottom * 100 + "%";
-	console.log(scrollPercent)
 	document.getElementById("progress").style.setProperty("width", scrollPercent);
 },{ passive: true })
 
@@ -53,14 +52,14 @@ Server.search_box.addEventListener('input', async () => {
 		let title = document.createElement('a')
 		title.classList.add('title')
 		title.innerHTML = search_item.title
-		title.href = window.location.href + 'article/' + search_item.article_url
+		title.href = window.location.origin + '/article/' + search_item.article_url
 		item.appendChild(title)
 		// add author
 		let author = document.createElement('a')
 		author.classList.add('author')
 		author.classList.add('default')
 		author.innerHTML = search_item.author
-		author.href = window.location.href + 'author/' + search_item.article_url
+		author.href = window.location.origin + '/author/' + search_item.article_url
 		item.appendChild(author)
 		// add date edited
 		let date_edited = document.createElement('div')

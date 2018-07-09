@@ -5,7 +5,8 @@ footer.article {
   margin-top: 6vh;
   font-family: 'Source Sans Pro';
   display: flex;
-  font-size: 1.9vh; }
+  font-size: 1.9vh;
+  margin-bottom: 2vh; }
   footer.article .descriptor {
     width: 26%;
     line-height: 2; }

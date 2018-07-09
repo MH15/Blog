@@ -3,7 +3,8 @@
 		"home",
 		"thingy",
 		"brit",
-		"second-piece"
+		"second-piece",
+		"nested/nested_page"
 	]
 
 }

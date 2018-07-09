@@ -4,12 +4,11 @@
   <meta name=”viewport” content=”width=device-width, initial-scale=1">
 
   <title><%= e.title %> | Panel</title>
-
   <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
   <link rel="stylesheet" href="/public/css/lib.css">
 
-  <link href="https://fonts.googleapis.com/css?family=Markazi+Text:400,500,600,700|Source+Sans+Pro:400,400i,600,600i,700,700i,900,900i|Roboto:500,500i,700,700i,900|" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Markazi+Text:400,500,600,700|Source+Sans+Pro:400,400i,600,600i,700,700i,900,900i|Roboto:500,500i,700,700i,900|Montserrat:300,400,500,600,700,800,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
@@ -44,20 +43,29 @@
 
 <div class="menu-grid">
 	<!-- four (five?) evenly spaced rounded rectangles along the bottom edge of the pulldown. colored differently with cutout white text. possible tinted image backgrounds -->
-	<div class="parent" id="c0">
-		<div class="rectangle">abc</div>
-	</div>
-	<div class="parent" id="c1">
-		<div class="rectangle">abc</div>
-	</div>
-	<div class="parent" id="c2">
-		<div class="rectangle">abc</div>
-	</div>
-	<div class="parent" id="c3">
-		<div class="rectangle">abc</div>
-	</div>
-	<div class="parent" id="c4">
-		<div class="rectangle">abc</div>
+	<div class="parent">
+		<div class="rectangle" id="s0">
+			<div class="image-screen"></div>
+				<div class="menu-screen">politics</div>
+		</div>
+		<div class="rectangle" id="s1">
+			<div class="image-screen"></div>
+				<div class="menu-screen">science</div>
+		</div>
+		<div class="rectangle" id="s2">
+			<div class="image-screen"></div>
+				<div class="menu-screen">design</div>
+		</div>
+		<div class="rectangle" id="s3">
+			<div class="image-screen"></div>
+				<div class="menu-screen">writing</div>
+		</div>
+		<div class="rectangle">
+			<a href="/about" class="default">About</a>
+			<a href="/team" class="default">Team</a>
+			<a href="/credits" class="default">Credits</a>
+			<a href="/contact" class="default">Contact</a>
+		</div>
 	</div>
 </div>
 <div class="search-grid">

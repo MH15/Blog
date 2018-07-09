@@ -155,7 +155,10 @@ div.grid-container {
   grid-row: 1 / 6;
   display: grid;
   grid-template-columns: 100fr;
-  grid-template-rows: [padding] 4vh [icon] 6vh [lower] auto; }
+  grid-template-rows: [padding] 4vh [icon] 6vh [lower] auto;
+  position: fixed;
+  width: 6vw;
+  height: 100%; }
   .sidebar .line {
     width: 2px;
     background: #EEE;
@@ -224,32 +227,72 @@ div.else {
   height: 80vh;
   background: white;
   transition: top 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  display: grid;
-  grid-template-columns: [padding-start] 110px repeat(5, 20fr) [padding-end] 10vw;
-  grid-template-rows: [top] 50fr [bottom] 50fr;
-  padding-bottom: 3vh; }
+  padding-top: 52vh;
+  padding-left: 8.6vw;
+  padding-right: 8.6vw; }
   .menu-grid .parent {
-    grid-row: bottom;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-left: 1.5vh;
-    padding-right: 1.5vh; }
+    width: 100%;
+    height: 100%;
+    padding-bottom: 1vw;
+    justify-content: flex-end; }
     .menu-grid .parent .rectangle {
       width: 100%;
-      background: antiquewhite;
-      height: 10vh;
-      border-radius: .5vh; }
-  .menu-grid .parent#c0 {
-    grid-column: 2; }
-  .menu-grid .parent#c1 {
-    grid-column: 3; }
-  .menu-grid .parent#c2 {
-    grid-column: 4; }
-  .menu-grid .parent#c3 {
-    grid-column: 5; }
-  .menu-grid .parent#c4 {
-    grid-column: 6; }
+      background: #FFF;
+      height: 100%;
+      border-radius: 0;
+      margin-left: .25vw;
+      margin-right: .25vw;
+      display: flex;
+      flex-direction: column;
+      background-size: 100% auto;
+      background-position: top;
+      cursor: pointer;
+      transition: 200ms ease all; }
+      .menu-grid .parent .rectangle .image-screen {
+        width: 100%;
+        background: transparent;
+        border: .5vw solid #FFF;
+        flex: 1;
+        transition: 200ms ease all; }
+      .menu-grid .parent .rectangle .menu-screen {
+        background: #FFF;
+        color: black;
+        text-transform: uppercase;
+        font-family: 'Montserrat';
+        font-weight: 800;
+        mix-blend-mode: screen;
+        letter-spacing: 0.3vh;
+        padding-left: .5vw;
+        padding-bottom: .5vw;
+        font-size: 4vh;
+        transition: 200ms ease all; }
+    .menu-grid .parent .rectangle:not(:last-of-type):active {
+      mix-blend-mode: luminosity;
+      opacity: 1.0; }
+    .menu-grid .parent .rectangle:not(:last-of-type):hover {
+      opacity: 0.8; }
+    .menu-grid .parent .rectangle:first-of-type {
+      margin-left: 0; }
+    .menu-grid .parent .rectangle:last-of-type {
+      margin-right: 0;
+      background: transparent;
+      display: flex;
+      flex-direction: column; }
+      .menu-grid .parent .rectangle:last-of-type a {
+        width: 100%;
+        font-size: 2.5vh;
+        line-height: 2;
+        padding-left: 1vw;
+        text-align: right; }
+    .menu-grid .parent #s0 {
+      background-image: url("../../public/img/newyorkfence.jpg"); }
+    .menu-grid .parent #s1 {
+      background-image: url("../../public/img/space.jpg"); }
+    .menu-grid .parent #s2 {
+      background-image: url("../../public/img/yellow_design.jpg"); }
+    .menu-grid .parent #s3 {
+      background-image: url("../../public/img/writing.jpg"); }
 
 .search-grid {
   z-index: 101;
