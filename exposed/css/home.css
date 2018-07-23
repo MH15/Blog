@@ -38,6 +38,10 @@ h1.accent {
 h1.fade {
   color: gray; }
 
+h2 {
+  font-size: 5vh;
+  font-weight: 500; }
+
 h3 {
   font-size: 2.3vh;
   margin: 0;
@@ -59,12 +63,10 @@ a {
   display: inline-block; }
 
 a:hover {
-  opacity: 0.6;
-  transform: scale(1.05); }
+  opacity: 0.6; }
 
 a:active {
-  opacity: 1;
-  transform: scale(0.95); }
+  opacity: 1; }
 
 a.article-url {
   font-size: 6vh;
@@ -121,6 +123,23 @@ a.title:active {
   transform: none;
   opacity: 0.6; }
 
+a.logo {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  transition: all ease 200ms;
+  transform-origin: center;
+  display: inline-block;
+  text-decoration: none; }
+
+a.logo:hover {
+  opacity: 1;
+  transform: none; }
+
+a.logo:active {
+  transform: none;
+  opacity: 0.6; }
+
 .else {
   display: grid;
   grid-template-columns: [splash] auto [negative-space-2] 5.2vw [image] 50vw;
@@ -160,10 +179,6 @@ a.title:active {
     width: auto;
     height: 5vh;
     line-height: 5vh;
-    border-radius: 2.5vh;
-    border: 1px solid gray;
-    padding-left: 2vw;
-    padding-right: 2vw;
     margin-bottom: 0;
     font-size: 2.3vh; }
 

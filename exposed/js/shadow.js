@@ -3,7 +3,9 @@ let inset = document.querySelectorAll(".inset")
 
 inset.forEach(img => {
 	var imgTile = new Image()
-	imgTile.src = window.getComputedStyle(img).backgroundImage.match(/\((.*?)\)/)[1].replace(/('|")/g,'')
+	// imgTile.src = window.getComputedStyle(img).backgroundImage.match(/\((.*?)\)/)[1].replace(/('|")/g,'')
+	console.log(img.style)
+	imgTile.src = img.style.backgroundImage.match(/\((.*?)\)/)[1].replace(/('|")/g,'')
 	imgTile.onload = function() {
 		let colors = colorThief.getColor(imgTile)
 		let r = colors[0]

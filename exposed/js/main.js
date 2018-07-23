@@ -51,6 +51,7 @@ Server.search_box.addEventListener('input', async () => {
 		// add title
 		let title = document.createElement('a')
 		title.classList.add('title')
+		title.classList.add('search_title')
 		title.innerHTML = search_item.title
 		title.href = window.location.origin + '/article/' + search_item.article_url
 		item.appendChild(title)

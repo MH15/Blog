@@ -2,6 +2,7 @@ const Hapi = require('hapi')
 const ejs = require('ejs')
 const unsure = require('unsure')
 const Fuse = require('fuse.js')
+const Joi = require('joi')
 global.Unsure = new unsure(__dirname)
 global.dirname = __dirname
 
@@ -15,12 +16,16 @@ const server = Hapi.server({
 });
 
 
+
+
 const init = async () => {
 	db.start()
-	await server.register({
-		// public files
-		plugin: require('inert')
-	})
+	await server.register([
+			require('inert'),
+			require('hapi-auth-basic'),
+		])
+
+
 
 	// serving public files
 	server.route({  
@@ -52,21 +57,24 @@ const init = async () => {
 	})
 
 	
+
 	await server.start()
 	console.log(`Server running at: ${server.info.uri}`);
-};
+}
 
 
 init();
 
+
+// Handle home page
 server.route({
 	method: 'GET',
 	path: '/',
 	handler: async (request, h) => {
 		// db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
 		// console.log(__dirname)
-		let retrieved_page = db.RetrievePage('home')
-		const page_body = await render("views/template.ejs", {
+		let retrieved_page = db.RetrievePage('home', 'pages')
+		const page_body = await render('views/template.ejs', {
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -74,7 +82,7 @@ server.route({
     }
 })
 
-
+// Handle articles
 server.route({
 	method: 'GET',
 	path: '/article/{name}',
@@ -85,9 +93,9 @@ server.route({
 		// if (request.path == "/")
 		console.log(request.path)
 
-		let retrieved_page = db.RetrievePage(request.params.name)
+		let retrieved_page = db.RetrievePage(request.params.name, "pages")
 
-		const page_body = await render("views/template.ejs", {
+		const page_body = await render('views/template.ejs', {
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -95,6 +103,140 @@ server.route({
     }
 })
 
+// Handle author's page
+server.route({
+	method: 'GET',
+	path: '/author/{name}',
+	handler: async (request, h) => {	
+		// db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
+
+		// TODO: handle this shite
+		// if (request.path == "/")
+		console.log(request.path)
+
+		let retrieved_page = db.RetrievePage(request.params.name, 'authors')
+		// find the author's top articles
+		// let author_articles = db.RetrieveAuthorArticles(request.params.name)
+		const page_body = await render('views/template.ejs', {
+			e: retrieved_page,
+			dirname: __dirname
+		})
+		return page_body
+    }
+})
+
+
+
+
+// Login
+let custom_fields = {
+  email     : Joi.string().email().required(), // Required
+  password  : Joi.string().required().min(6)   // minimum length 6 characters
+}
+
+// console.log(custom_fields)
+
+
+
+server.route({
+    method: 'GET',
+    path: '/login',
+    handler: async function (request, h) {
+    	// db.CreateUser('matthew349hall@hotmail.com', 'MHall123')
+		let retrieved_page = db.RetrieveStaticPage('login')
+		const page_body = await render('views/template.ejs', {
+			e: retrieved_page,
+			dirname: __dirname
+		})
+		return page_body
+    }
+})
+
+
+
+
+server.route({
+    method: 'GET',
+    path: '/logout',
+    handler: function (request, reply) {
+    	return "logout"
+    }
+})
+
+
+server.route({
+	method: 'POST',
+	path: '/authenticate',
+	handler: async function (request, h) {
+		let retrieved_page = db.RetrieveStaticPage('edit')
+		const page_body = await render('views/template.ejs', {
+			e: retrieved_page,
+			dirname: __dirname
+		})
+		let accepted = await db.AuthenticateUserCredentials(request.payload.email, request.payload.password)
+		if (accepted) {
+			console.log("we good")
+			return h.redirect('/edit')
+		} else {
+			console.log("ya hacker")
+			return h.redirect('/login')
+
+		}
+
+
+
+	}
+})
+
+
+// Editor
+server.route({
+	method: 'GET',
+	path: '/edit',
+	handler: async function (request, reply) {
+		let retrieved_page = db.RetrieveStaticPage('edit')
+		const page_body = await render('views/template.ejs', {
+			e: retrieved_page,
+			dirname: __dirname
+		})
+		// todo check if authenticated
+		return page_body
+
+	}
+})
+
+
+
+const static_page_routes = require('./core/static_page_routes')
+
+server.route([
+	{
+		method: 'GET',
+		path: '/about',
+		handler: static_page_routes.about
+	}, 
+	{
+		method: 'GET',
+		path: '/credits',
+		handler: static_page_routes.credits
+	}, 
+	{
+		method: 'GET',
+		path: '/team',
+		handler: static_page_routes.team
+	}, 
+	{
+		method: 'GET',
+		path: '/contact',
+		handler: static_page_routes.contact
+	}, 
+])
+
+
+
+// TODO: Create a section that runs on a specified time 
+// interval to ensure that all data + db are up to date
+let fuse;
 let options = {
   shouldSort: true,
   threshold: 0.3,
@@ -108,12 +250,7 @@ let options = {
     name: 'author',
     weight: 0.4
   }]
-};
-
-// TODO: Create a section that runs on a specified time 
-// interval to ensure that all data + db are up to date
-let fuse;
-
+}
 async function long_term_update() {
 	let data = await db.CreateSearchData()
 	fuse = new Fuse(data, options)
@@ -135,12 +272,25 @@ server.route({
 		// let payload = JSON.parse(request.payload)
 		return outputs
     }
-});
+})
+
+
+// 404 Page
+// TODO: make it work for all routes
+server.route({ 
+	method: '*', 
+	path: '/{p*}', 
+	handler : (request, h) => {
+    	return h.response('The page was not found').code(404);
+	}
+})
+
+
 
 process.on('unhandledRejection', (err) => {
-	console.log(err);
-	process.exit(1);
-});
+	console.log(err)
+	process.exit(1)
+})
 
 
 

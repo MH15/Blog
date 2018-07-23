@@ -38,6 +38,10 @@ h1.accent {
 h1.fade {
   color: gray; }
 
+h2 {
+  font-size: 5vh;
+  font-weight: 500; }
+
 h3 {
   font-size: 2.3vh;
   margin: 0;
@@ -59,12 +63,10 @@ a {
   display: inline-block; }
 
 a:hover {
-  opacity: 0.6;
-  transform: scale(1.05); }
+  opacity: 0.6; }
 
 a:active {
-  opacity: 1;
-  transform: scale(0.95); }
+  opacity: 1; }
 
 a.article-url {
   font-size: 6vh;
@@ -121,6 +123,23 @@ a.title:active {
   transform: none;
   opacity: 0.6; }
 
+a.logo {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  transition: all ease 200ms;
+  transform-origin: center;
+  display: inline-block;
+  text-decoration: none; }
+
+a.logo:hover {
+  opacity: 1;
+  transform: none; }
+
+a.logo:active {
+  transform: none;
+  opacity: 0.6; }
+
 .else {
   display: flex;
   flex-direction: column;
@@ -142,7 +161,7 @@ div.header {
   width: 100%;
   display: flex;
   height: auto;
-  margin-bottom: 5vh;
+  margin-bottom: 4vh;
   margin-top: 7vh;
   align-items: flex-end; }
   div.header .published-date {
@@ -151,13 +170,15 @@ div.header {
     margin: 0;
     line-height: 5.5vh;
     text-align: right;
-    font-size: 2.4vh; }
+    font-size: 2.4vh;
+    padding-left: 1vw; }
   div.header .article-title {
     flex: 1;
     height: 100%;
     margin: 0;
-    line-height: 8.5vh;
-    font-size: 8.5vh; }
+    line-height: 7.5vh;
+    font-size: 7.5vh;
+    font-weight: 600; }
 
 .article-details {
   width: 100%;
@@ -183,12 +204,10 @@ article.middle {
     width: 45vw;
     line-height: 1.6;
     font-family: "Crimson Text";
-    font-size: 3vh;
+    font-size: 2.75vh;
     font-weight: 100; }
 
 .image.article {
   width: 100%;
   height: 60vh;
   margin-bottom: 4vh; }
-  .image.article .inset {
-    background: url("../../public/img/mountains.jpg"); }

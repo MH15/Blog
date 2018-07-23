@@ -38,6 +38,10 @@ h1.accent {
 h1.fade {
   color: gray; }
 
+h2 {
+  font-size: 5vh;
+  font-weight: 500; }
+
 h3 {
   font-size: 2.3vh;
   margin: 0;
@@ -59,12 +63,10 @@ a {
   display: inline-block; }
 
 a:hover {
-  opacity: 0.6;
-  transform: scale(1.05); }
+  opacity: 0.6; }
 
 a:active {
-  opacity: 1;
-  transform: scale(0.95); }
+  opacity: 1; }
 
 a.article-url {
   font-size: 6vh;
@@ -121,6 +123,23 @@ a.title:active {
   transform: none;
   opacity: 0.6; }
 
+a.logo {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  transition: all ease 200ms;
+  transform-origin: center;
+  display: inline-block;
+  text-decoration: none; }
+
+a.logo:hover {
+  opacity: 1;
+  transform: none; }
+
+a.logo:active {
+  transform: none;
+  opacity: 0.6; }
+
 html, body {
   width: 100%;
   height: 100%;
@@ -135,7 +154,7 @@ div.grid-container {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: [sidebar] 6vw [negative-space-1] 2.6vw [else] auto [negative-space-2] 5.2vw [image] 50vw;
+  grid-template-columns: [sidebar] 7vw [negative-space-1] 2.1vw [else] auto [negative-space-2] 5.2vw [image] 50vw;
   grid-template-rows: [padding] 5vh [header] 4vh [all] auto [footer] 5vh [padding] 5vh; }
 
 #SHADE {
@@ -157,7 +176,7 @@ div.grid-container {
   grid-template-columns: 100fr;
   grid-template-rows: [padding] 4vh [icon] 6vh [lower] auto;
   position: fixed;
-  width: 6vw;
+  width: 7vw;
   height: 100%; }
   .sidebar .line {
     width: 2px;
@@ -186,7 +205,7 @@ header {
     position: fixed;
     top: 5vh;
     left: 0;
-    width: 6vw;
+    width: 7vw;
     height: 4vh;
     line-height: 4vh;
     text-align: center; }
@@ -228,8 +247,8 @@ div.else {
   background: white;
   transition: top 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   padding-top: 52vh;
-  padding-left: 8.6vw;
-  padding-right: 8.6vw; }
+  padding-left: 9.6vw;
+  padding-right: 9.6vw; }
   .menu-grid .parent {
     display: flex;
     width: 100%;
@@ -245,10 +264,11 @@ div.else {
       margin-right: .25vw;
       display: flex;
       flex-direction: column;
-      background-size: 100% auto;
+      background-size: cover;
       background-position: top;
       cursor: pointer;
-      transition: 200ms ease all; }
+      transition: 200ms ease all;
+      mix-blend-mode: luminosity; }
       .menu-grid .parent .rectangle .image-screen {
         width: 100%;
         background: transparent;
@@ -265,13 +285,12 @@ div.else {
         letter-spacing: 0.3vh;
         padding-left: .5vw;
         padding-bottom: .5vw;
-        font-size: 4vh;
+        font-size: 3vh;
         transition: 200ms ease all; }
     .menu-grid .parent .rectangle:not(:last-of-type):active {
-      mix-blend-mode: luminosity;
-      opacity: 1.0; }
-    .menu-grid .parent .rectangle:not(:last-of-type):hover {
       opacity: 0.8; }
+    .menu-grid .parent .rectangle:not(:last-of-type):hover {
+      mix-blend-mode: normal; }
     .menu-grid .parent .rectangle:first-of-type {
       margin-left: 0; }
     .menu-grid .parent .rectangle:last-of-type {
@@ -304,8 +323,8 @@ div.else {
   background: white;
   transition: top 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   padding-top: 52vh;
-  padding-left: 8.6vw;
-  padding-right: 8.6vw; }
+  padding-left: 9.6vw;
+  padding-right: 9.6vw; }
   .search-grid .results {
     width: 100%;
     height: 100%; }
@@ -328,7 +347,6 @@ div.else {
   .image .inset {
     width: 100%;
     border-radius: 3px;
-    background: url("../../public/img/newyork.jpg");
     background-size: cover;
     box-shadow: 0;
     transition: box-shadow 300ms ease-out; }

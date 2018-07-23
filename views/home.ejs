@@ -10,7 +10,7 @@
 		<div class="splash-details">
 			<div class="author">
 				<h3 class="fade">Written by</h3>
-				<h3><a href="<%= "https://panelmag.com/author/" + e.highlights[i].author_url %>"><%= e.highlights[i].author %></a></h3>
+				<h3><a href="<%= "/author/" + e.highlights[i].author_url %>"><%= e.highlights[i].author %></a></h3>
 			</div>
 			<div class="read-time">5 min read</div>
 		</div>
@@ -20,7 +20,7 @@
 
 
 <div class="image home">
-	<div class="inset"></div>
+	<div class="inset" style="background-image: url(<%= e.photo_url %>)"></div>
 </div>
 
 

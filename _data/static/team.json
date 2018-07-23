@@ -1,0 +1,8 @@
+{
+    "title": "Team",
+    "url": "team",
+    "content": "<p>An increditble team</p><ul><li>a</li></ul>",
+    "template": "credits",
+  	"photo_url": "../../public/img/yellow_design.jpg",
+    "custom-css": ""
+}

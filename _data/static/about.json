@@ -1,0 +1,8 @@
+{
+    "title": "About Panel.",
+    "url": "about",
+    "content": "Information about whatevs this is.",
+    "template": "about",
+  	"photo_url": "../../public/img/newyork.jpg",
+    "custom-css": ""
+}

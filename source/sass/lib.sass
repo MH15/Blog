@@ -21,7 +21,7 @@ div.grid-container
 	width: 100%
 	height: 100%
 	display: grid
-	grid-template-columns: [sidebar] $sidebar-width [negative-space-1] 2.6vw [else] auto [negative-space-2] 5.2vw [image] 50vw
+	grid-template-columns: [sidebar] $sidebar-width [negative-space-1] 2.1vw [else] auto [negative-space-2] 5.2vw [image] 50vw
 	grid-template-rows: [padding] $padding [header] $title-height [all] auto [footer] $padding [padding] $padding
 
 #SHADE
@@ -152,10 +152,11 @@ div.else
 			margin-right: .25vw
 			display: flex
 			flex-direction: column
-			background-size: 100% auto
+			background-size: cover
 			background-position: top
 			cursor: pointer
 			transition: 200ms ease all
+			mix-blend-mode: luminosity
 
 			.image-screen
 				width: 100%
@@ -174,19 +175,14 @@ div.else
 				letter-spacing: 0.3vh
 				padding-left: .5vw
 				padding-bottom: .5vw
-				font-size: 4vh
+				font-size: 3vh
 				transition: 200ms ease all
 
 
 		.rectangle:not(:last-of-type):active
-			mix-blend-mode: luminosity
-			opacity: 1.0
-		.rectangle:not(:last-of-type):hover
-			// height: 130%
 			opacity: 0.8
-			.menu-screen
-				// font-size: 2vh
-			// opacity: 0.85
+		.rectangle:not(:last-of-type):hover
+			mix-blend-mode: normal
 
 		.rectangle:first-of-type
 			margin-left: 0
@@ -271,7 +267,7 @@ div.else
 	.inset
 		width: 100%
 		border-radius: 3px 
-		background: url("../../public/img/newyork.jpg")
+		// background: url("../../public/img/newyork.jpg")
 		background-size: cover
 		box-shadow: 0
 		transition: box-shadow 300ms ease-out

@@ -11,14 +11,14 @@
 		<div class="published-date">Published <%= e.date_published %></div>
 	</div>
 	<div class="image article">
-		<div class="inset"></div>
+		<div class="inset" style="background-image: url(<%= e.photo_url %>)"></div>
 	</div>
 
 
 	<div class="article-details">
 		<div class="author">
 			<h3 class="fade">Written by&nbsp</h3>
-			<h3><a href="<%= "https://panelmag.com/author/" + e.author_url %>"><%= e.author %></a></h3>
+			<h3><a href="<%= "/author/" + e.author_url %>"><%= e.author %></a></h3>
 		</div>
 
 

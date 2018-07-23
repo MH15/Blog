@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/public/css/article.css">
+<link rel="stylesheet" href="/public/css/footer.css">
+
+<div id="progress"></div>
+
+
+
+<article class="middle">
+	<div class="header">
+		<h1 class="article-title"><%= e.title %></h1>
+	</div>
+	<div class="image article">
+		<div class="inset" style="background-image: url(<%= e.photo_url %>)"></div>
+	</div>
+
+
+
+
+	<div class="content"><%= e.content %></div>
+
+
+</article>
+
+<footer class="article">
+	<div class="descriptor">
+		<div class="fade">email.</div>
+		<div class="fade">tel. no.</div>
+	</div>
+	<div class="field">
+		<a class="default" href="mailto:contact@panelmag.com">contact@panelmag.com</a>
+		<a class="default" href="tel:9378464465">937-846-4465</a>
+	</div>
+</footer>

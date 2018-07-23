@@ -21,12 +21,18 @@ gulp.task('sass:footer', function () {
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./exposed/css'))
 })
+gulp.task('sass:author', function () {
+  return gulp.src('./source/sass/author.sass')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./exposed/css'))
+})
  
 gulp.task('sass:watch', function () {
   gulp.watch('./source/sass/**/*.sass', [
   	'sass:lib',
   	'sass:home',
   	'sass:article',
-    'sass:footer'
+    'sass:footer',
+    'sass:author'
   ]);
 });
