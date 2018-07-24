@@ -28,7 +28,6 @@ const init = async () => {
 	db.start()
 	await server.register([
 		require('inert'),
-		require('hapi-auth-basic'),
 	])
 
 	await server.register({
@@ -205,25 +204,11 @@ server.route({
 
 
 // Editor - a restricted route
+const editor_routes = require('./core/editor_routes')
 server.route({
 	method: 'GET',
 	path: '/edit',
-	handler: async function (request, h) {
-		let retrieved_page = db.RetrieveStaticPage('edit')
-		const page_body = await render({
-			e: retrieved_page,
-			dirname: __dirname
-		})
-	    const state = request.yar.get('state')
-	    // if authenticated, display the editor screen
-	    // else redirect to login
-	    if (state == undefined || !state.user_logged_in) {
-			return h.redirect('/login')	 
-	    } else if (state.user_logged_in) {   
-			return page_body
-		}
-
-	}
+	handler: editor_routes.explorer
 })
 
 
