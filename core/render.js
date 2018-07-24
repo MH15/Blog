@@ -1,9 +1,9 @@
 const fs = require('fs')
 const ejs = require('ejs')
 
-let render = (file, data) => {
+let render = (data) => {
 	return new Promise((resolve, reject) => {
-		fs.readFile(file, "utf8", (err, body) => {
+		fs.readFile('views/template.ejs', "utf-8", (err, body) => {
 			if (err) {
 				reject(err)
 			}

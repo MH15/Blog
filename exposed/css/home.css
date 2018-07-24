@@ -80,8 +80,7 @@ a.article-url {
 
 a.article-url:hover {
   transform: none;
-  opacity: 1;
-  color: #d55c04; }
+  opacity: 0.5s; }
 
 a.article-url:active {
   transform: none;

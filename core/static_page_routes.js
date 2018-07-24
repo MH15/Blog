@@ -1,14 +1,15 @@
 const db = require('./database')
 const render = require('./render')
+const fs = require('fs')
 
 class static_page_routes {
 	async about(request, h) {
 		console.log(request.path)
 
 		let retrieved_page = db.RetrieveStaticPage('about')
-		const page_body = await render('../views/template.ejs', {
+		const page_body = await render({
 			e: retrieved_page,
-			dirname: __dirname
+			dirname: global.dirname
 		})
 		return page_body
     }
@@ -16,9 +17,9 @@ class static_page_routes {
 		console.log(request.path)
 
 		let retrieved_page = db.RetrieveStaticPage('team')
-		const page_body = await render('../views/template.ejs', {
+		const page_body = await render({
 			e: retrieved_page,
-			dirname: __dirname
+			dirname: global.dirname
 		})
 		return page_body
     }
@@ -26,9 +27,9 @@ class static_page_routes {
 		console.log(request.path)
 
 		let retrieved_page = db.RetrieveStaticPage('credits')
-		const page_body = await render('../views/template.ejs', {
+		const page_body = await render({
 			e: retrieved_page,
-			dirname: __dirname
+			dirname: global.dirname
 		})
 		return page_body
     }
@@ -36,9 +37,9 @@ class static_page_routes {
 		console.log(request.path)
 
 		let retrieved_page = db.RetrieveStaticPage('contact')
-		const page_body = await render('../views/template.ejs', {
+		const page_body = await render({
 			e: retrieved_page,
-			dirname: __dirname
+			dirname: global.dirname
 		})
 		return page_body
     }

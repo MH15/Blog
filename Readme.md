@@ -23,3 +23,10 @@ Each page's url must be added into the `data.json` page entry before use.
 
 ## Domain names
 Either `politinc.co` or `panelmag.com`.
+
+
+
+
+<%- include(dirname + "/views/" + e.template + ".ejs", {e, dirname}) %>
+
+<%- include(dirname + "/views/" + e.template + ".ejs", {e, dirname}) %>

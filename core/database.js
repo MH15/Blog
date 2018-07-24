@@ -48,9 +48,7 @@ class Database {
 	RetrievePage(page_title, type) {
 		// page_title is the filename, type is the directory
 		Unsure.setActiveFile('_data/data.json')
-		console.log(type)
 		let pages_array = Unsure.Query(type)
-		console.log(pages_array)
 		if (pages_array.includes(page_title)) {
 			Unsure.loadFile(`_data/${type}/${page_title}.json`)
 			Unsure.setActiveFile(`_data/${type}/${page_title}.json`)
@@ -119,7 +117,6 @@ class Database {
 			Unsure.setActiveFile('_data/auth.json')
 			let users = Unsure.Query('users')
 			users.forEach(user => {
-				console.log(user)
 				// check if username exists
 				if (user.email == email) {
 					// compare passwords

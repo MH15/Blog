@@ -15,17 +15,26 @@ const server = Hapi.server({
 	host: 'localhost'
 });
 
-
+let yar_options = {
+    storeBlank: false,
+    cookieOptions: {
+        password: 'the-password-must-be-at-least-32-characters-long',
+        isSecure: false // CHANGE TO true BEFORE RELEASE ON HTTPS
+    }
+};
 
 
 const init = async () => {
 	db.start()
 	await server.register([
-			require('inert'),
-			require('hapi-auth-basic'),
-		])
+		require('inert'),
+		require('hapi-auth-basic'),
+	])
 
-
+	await server.register({
+    	plugin: require('yar'),
+    	options: yar_options
+	})
 
 	// serving public files
 	server.route({  
@@ -74,7 +83,7 @@ server.route({
 		// db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
 		// console.log(__dirname)
 		let retrieved_page = db.RetrievePage('home', 'pages')
-		const page_body = await render('views/template.ejs', {
+		const page_body = await render({
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -95,7 +104,7 @@ server.route({
 
 		let retrieved_page = db.RetrievePage(request.params.name, "pages")
 
-		const page_body = await render('views/template.ejs', {
+		const page_body = await render({
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -117,7 +126,7 @@ server.route({
 		let retrieved_page = db.RetrievePage(request.params.name, 'authors')
 		// find the author's top articles
 		// let author_articles = db.RetrieveAuthorArticles(request.params.name)
-		const page_body = await render('views/template.ejs', {
+		const page_body = await render({
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -144,7 +153,7 @@ server.route({
     handler: async function (request, h) {
     	// db.CreateUser('matthew349hall@hotmail.com', 'MHall123')
 		let retrieved_page = db.RetrieveStaticPage('login')
-		const page_body = await render('views/template.ejs', {
+		const page_body = await render({
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -159,7 +168,9 @@ server.route({
     method: 'GET',
     path: '/logout',
     handler: function (request, reply) {
-    	return "logout"
+    	// remove login cookies
+    	request.yar.reset();
+        return reply.redirect('/');
     }
 })
 
@@ -169,13 +180,15 @@ server.route({
 	path: '/authenticate',
 	handler: async function (request, h) {
 		let retrieved_page = db.RetrieveStaticPage('edit')
-		const page_body = await render('views/template.ejs', {
+		const page_body = await render({
 			e: retrieved_page,
 			dirname: __dirname
 		})
 		let accepted = await db.AuthenticateUserCredentials(request.payload.email, request.payload.password)
 		if (accepted) {
 			console.log("we good")
+			// set the thingy to remember user sessions
+    		request.yar.set('state', { user_logged_in: true })
 			return h.redirect('/edit')
 		} else {
 			console.log("ya hacker")
@@ -189,26 +202,33 @@ server.route({
 })
 
 
-// Editor
+
+
+// Editor - a restricted route
 server.route({
 	method: 'GET',
 	path: '/edit',
-	handler: async function (request, reply) {
+	handler: async function (request, h) {
 		let retrieved_page = db.RetrieveStaticPage('edit')
-		const page_body = await render('views/template.ejs', {
+		const page_body = await render({
 			e: retrieved_page,
 			dirname: __dirname
 		})
-		// todo check if authenticated
-		return page_body
+	    const state = request.yar.get('state')
+	    // if authenticated, display the editor screen
+	    // else redirect to login
+	    if (state == undefined || !state.user_logged_in) {
+			return h.redirect('/login')	 
+	    } else if (state.user_logged_in) {   
+			return page_body
+		}
 
 	}
 })
 
 
-
+// load static pages ya know
 const static_page_routes = require('./core/static_page_routes')
-
 server.route([
 	{
 		method: 'GET',
