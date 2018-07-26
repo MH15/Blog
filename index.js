@@ -3,8 +3,11 @@ const ejs = require('ejs')
 const unsure = require('unsure')
 const Fuse = require('fuse.js')
 const Joi = require('joi')
+const dirTree = require('directory-tree');
 global.Unsure = new unsure(__dirname)
 global.dirname = __dirname
+
+
 
 // my libs
 const db = require('./core/database')
@@ -209,6 +212,30 @@ server.route({
 	method: 'GET',
 	path: '/edit',
 	handler: editor_routes.explorer
+})
+
+server.route({
+	method: 'POST',
+	path: '/request_file_tree',
+	handler: async (request, h) => {
+    	// get file tree for editor
+		// THIS IS A PROTOTYPE
+		const filteredTree = dirTree('_data/')
+		// TODO: sort so folders are first
+		return filteredTree
+
+	}
+})
+
+server.route({
+	method: 'POST',
+	path: '/edit/open_file',
+	handler: async (request, h) => {
+		// dsb? name for thing?
+		console.log("Opening file: " + request.payload.path)
+		let content = await db.OpenFile(request.payload.path)
+		return content
+	}
 })
 
 

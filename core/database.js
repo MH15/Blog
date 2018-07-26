@@ -1,5 +1,6 @@
 // for hashing
 const bcrypt = require('bcrypt')
+const fs = require('fs')
 
 
 let options = {
@@ -58,6 +59,17 @@ class Database {
 		} else {
 			return -1
 		}
+	}
+
+	OpenFile(path) {
+		return new Promise((resolve, reject) => {
+			fs.readFile(path, (err, data) => {
+				if (err) {
+					reject(err)
+				}
+				resolve(data)
+			});
+		})
 	}
 
 

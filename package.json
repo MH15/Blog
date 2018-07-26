@@ -20,6 +20,7 @@
     "yar": "^9.0.1"
   },
   "devDependencies": {
+    "directory-tree": "^2.1.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^4.0.1"
   }
