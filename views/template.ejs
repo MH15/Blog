@@ -78,18 +78,18 @@
 		</div>
 
 	</header>
-<!-- scripts gotta be here because reasons -->
-<script type="text/javascript" src="/public/js/color-thief.min.js"></script>
-<script type="text/javascript" src="/public/js/shadow.js"></script>
-<script type="text/javascript" src="/public/js/ui.js"></script>
-<script type="text/javascript" src="/public/js/server.js"></script>
-<script type="text/javascript" src="/public/js/main.js"></script>
 	<div class="else">
 		<!-- page template type loaded here -->
 		<!-- TODO: find a way to pass entire object into included page -->
 		<%- include(dirname + "/views/" + e.template + ".ejs", {e, dirname}) %>
 
 	</div>
+<!-- scripts gotta be here because reasons -->
+<script type="text/javascript" src="/public/js/server.js"></script>
+<script type="text/javascript" src="/public/js/color-thief.min.js"></script>
+<script type="text/javascript" src="/public/js/shadow.js"></script>
+<script type="text/javascript" src="/public/js/ui.js"></script>
+<script type="text/javascript" src="/public/js/main.js"></script>
 
 </div>
 

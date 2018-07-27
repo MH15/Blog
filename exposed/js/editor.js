@@ -1,64 +1,33 @@
 // editor
-var tree = [{
-		name: 'Vegetables',
-		children: []
-	}, {
-		name: 'Fruits',
-		children: [{
-			name: 'Apple',
-			children: []
-		}, {
-			name: 'Orange',
-			children: []
-		}, {
-			name: 'Lemon',
-			children: []
-		}]
-	}, {
-		name: 'Candy',
-		children: [{
-			name: 'Gummies',
-			children: []
-		}, {
-			name: 'Chocolate',
-			children: [{
-				name: 'M & M\'s',
-				children: []
-			}, {
-				name: 'Hershey Bar',
-				children: []
-			}]
-		}, ]
-	}, {
-		name: 'Bread',
-		children: []
-	}];
+let CURRENT_FILE = ""
 //
 // Grab expand/collapse buttons
 //
-var expandAll = document.getElementById('expandAll');
-var collapseAll = document.getElementById('collapseAll');
+let expandAll = document.querySelector('#expandAll');
+let collapseAll = document.querySelector('#collapseAll');
+let saveFile = document.querySelector('#saveFile');
 //
 
 
 // var p = new TreeView(tree, 'tree_container_2');
 
+// fix below
+let EditServer = new edit_server()
+
+
 async function TreeUpdate() {
-	let file_tree = await Server.GetFileTree()
-	console.log(file_tree)
+	let file_tree = await EditServer.GetFileTree()
 // Create tree
 //
 	file_tree.expanded = true
 	var t = new TreeView(file_tree.children, 'tree_container');
-	console.log(t)
 	// var t = new TreeView(tree, 'tree_container');
 	// console.log(t)
 	expandAll.onclick = function () { t.expandAll(); };
 	collapseAll.onclick = function () { t.collapseAll(); };
-	t.on('select', function (e) { 
-		console.log('select')
-		console.log(e)
+	t.on('select', function (e) {
 		UpdateJSONEditor(e.data.path)
+		CURRENT_FILE = e.data.path
 	});
 	t.on('expand', function () { console.log('expand'); });
 	t.on('collapse', function () { console.log('collapse'); });
@@ -67,7 +36,9 @@ async function TreeUpdate() {
 
 }
 
+// load file tree
 TreeUpdate()
+
 
 
 var container = document.getElementById('jsoneditor');
@@ -79,6 +50,9 @@ var options = {
   },
   onModeChange: function (newMode, oldMode) {
     console.log('Mode switched from', oldMode, 'to', newMode);
+  },
+  onChange: function () {
+  	// console.log(editor.get())
   }
 };
 // TODO: make the placeholder be some instructions
@@ -95,7 +69,15 @@ var editor = new JSONEditor(container, options, json);
 // update editor content based on the file selected
 // in the file tree
 async function UpdateJSONEditor(path) {
-	let content = await Server.OpenFile(path)
-	console.log(content)
+	let content = await EditServer.OpenFile(path)
 	editor.setText(content)
 }
+
+
+// sve current file
+saveFile.addEventListener('click', async () => {
+	// send content back to server
+	let confirmation = await EditServer.SaveFile(CURRENT_FILE, editor.get())
+	console.log(confirmation)
+})
+

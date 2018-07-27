@@ -71,6 +71,19 @@ class Database {
 			});
 		})
 	}
+	SaveFile(path, content) {
+		return new Promise((resolve, reject) => {
+			fs.writeFile(path, JSON.stringify(content), (err, data) => {
+				if (err) {
+					console.log(err)
+					reject(err)
+				}
+				// TODO: reload relevant Unsure instances to update the 
+				// pages edited without restarting the server
+				resolve("File Save Success!")
+			});
+		})
+	}
 
 
 

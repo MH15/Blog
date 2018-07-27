@@ -238,6 +238,18 @@ server.route({
 	}
 })
 
+server.route({
+	method: 'POST',
+	path: '/edit/save_file',
+	handler: async (request, h) => {
+		// dsb? name for thing?
+		console.log("Saving file: " + request.payload.path)
+		let confirmation = await db.SaveFile(request.payload.path, request.payload.content)
+		
+		return confirmation
+	}
+})
+
 
 // load static pages ya know
 const static_page_routes = require('./core/static_page_routes')
