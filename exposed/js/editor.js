@@ -26,7 +26,9 @@ async function TreeUpdate() {
 	expandAll.onclick = function () { t.expandAll(); };
 	collapseAll.onclick = function () { t.collapseAll(); };
 	t.on('select', function (e) {
-		UpdateJSONEditor(e.data.path)
+		// decide if we load the markdown or json editor
+		HandleEditorLoad(e.data)
+		// UpdateJSONEditor(e.data.path)
 		CURRENT_FILE = e.data.path
 	});
 	t.on('expand', function () { console.log('expand'); });
@@ -68,6 +70,20 @@ var editor = new JSONEditor(container, options, json);
 
 // update editor content based on the file selected
 // in the file tree
+async function HandleEditorLoad(data) {
+	// let content = await EditServer.OpenFile(data)
+	console.log(data)
+	if (data.extension == '.json') {
+		let content = await EditServer.OpenFile(data.path)
+		editor.setText(content)
+	}
+	if (data.extension == '.md') {
+		console.log('issa markdown file biotches')
+	}
+	
+}
+
+
 async function UpdateJSONEditor(path) {
 	let content = await EditServer.OpenFile(path)
 	editor.setText(content)
