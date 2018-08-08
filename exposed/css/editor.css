@@ -1,0 +1,23 @@
+.shell {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: [sidebar] 20fr [json-editor] 40fr [markdown-editor] 40fr;
+  grid-template-rows: [all] auto [status] 6vh; }
+
+.editor-sidebar {
+  grid-row: all;
+  grid-column: sidebar; }
+  .editor-sidebar #tree_container {
+    width: 100%; }
+
+.json-editor {
+  grid-row: all;
+  grid-column: json-editor; }
+  .json-editor #jsoneditor {
+    width: 100%;
+    height: 100%; }
+
+.markdown-editor {
+  grid-row: all;
+  grid-column: markdown-editor; }

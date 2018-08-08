@@ -85,7 +85,7 @@ server.route({
 		// db.RecordConnection(new Date().toLocaleString(), request.info.remoteAddress)
 		// console.log(__dirname)
 		let retrieved_page = db.RetrievePage('home', 'pages')
-		const page_body = await render({
+		const page_body = await render.ejs({
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -105,8 +105,11 @@ server.route({
 		console.log(request.path)
 
 		let retrieved_page = db.RetrievePage(request.params.name, "pages")
+		let markdown_string = await db.LoadMarkdown(request.params.name, "pages")
+		
+		retrieved_page.content = render.markdown(markdown_string)
 
-		const page_body = await render({
+		const page_body = await render.ejs({
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -128,7 +131,7 @@ server.route({
 		let retrieved_page = db.RetrievePage(request.params.name, 'authors')
 		// find the author's top articles
 		// let author_articles = db.RetrieveAuthorArticles(request.params.name)
-		const page_body = await render({
+		const page_body = await render.ejs({
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -155,7 +158,7 @@ server.route({
     handler: async function (request, h) {
     	// db.CreateUser('matthew349hall@hotmail.com', 'MHall123')
 		let retrieved_page = db.RetrieveStaticPage('login')
-		const page_body = await render({
+		const page_body = await render.ejs({
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -182,7 +185,7 @@ server.route({
 	path: '/authenticate',
 	handler: async function (request, h) {
 		let retrieved_page = db.RetrieveStaticPage('edit')
-		const page_body = await render({
+		const page_body = await render.ejs({
 			e: retrieved_page,
 			dirname: __dirname
 		})
@@ -220,7 +223,7 @@ server.route({
 	handler: async (request, h) => {
     	// get file tree for editor
 		// THIS IS A PROTOTYPE
-		const filteredTree = dirTree('_data/')
+		const filteredTree = dirTree('_data/', {extensions:/\.json/})
 		// TODO: sort so folders are first
 		return filteredTree
 
@@ -232,9 +235,15 @@ server.route({
 	path: '/edit/open_file',
 	handler: async (request, h) => {
 		// dsb? name for thing?
-		console.log("Opening file: " + request.payload.path)
-		let content = await db.OpenFile(request.payload.path)
-		return content
+		console.log("Opening files matching: " + request.payload.path)
+		let json = await db.OpenFile(request.payload.path + '.json')
+		let markdown = await db.OpenFile(request.payload.path + '.md').catch(err => {
+			console.log("It's ok but this JSON file doesn't have an attached Markdown file.")
+		})
+		return {
+			json: JSON.parse(json), 
+			markdown: markdown
+		}
 	}
 })
 

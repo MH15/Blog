@@ -61,9 +61,26 @@ class Database {
 		}
 	}
 
-	OpenFile(path) {
+	// LoadMarkdown is based off of RetrievePage but includes the
+	// markdown rendering component
+	LoadMarkdown(page_title, type) {
+		// page_title is the filename, type is the directory
 		return new Promise((resolve, reject) => {
-			fs.readFile(path, (err, data) => {
+			fs.readFile(`_data/${type}/${page_title}.md`, "utf-8", (err, body) => {
+				if (err) {
+					reject(err)
+				}
+				resolve(body)
+			})
+		})
+
+	}
+
+	OpenFile(path) {
+		// TODO: return both the markdown and json files
+		console.log(path)
+		return new Promise((resolve, reject) => {
+			fs.readFile(path, 'utf-8', (err, data) => {
 				if (err) {
 					reject(err)
 				}

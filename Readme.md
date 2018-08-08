@@ -12,8 +12,6 @@ panelmag.com
 		/author-url
 	/credits
 		Open Source licenses, etc.
-
-
 	/admin
 		/edit
 

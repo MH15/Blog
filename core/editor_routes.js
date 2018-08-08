@@ -8,7 +8,7 @@ class editor_routes {
 	// and allows the user to select and edit them
 	async explorer (request, h) {
 		let retrieved_page = db.RetrieveStaticPage('edit')
-		const page_body = await render({
+		const page_body = await render.ejs({
 			e: retrieved_page,
 			dirname: global.dirname
 		})
