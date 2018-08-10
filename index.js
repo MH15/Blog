@@ -20,7 +20,7 @@ const server = Hapi.server({
 let yar_options = {
     storeBlank: false,
     cookieOptions: {
-',
+		password: 'the-password-must-be-at-least-32-characters-long',
         isSecure: false // CHANGE TO true BEFORE RELEASE ON HTTPS
     }
 };
