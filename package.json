@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "author": "Matthew Hall",
@@ -24,5 +23,8 @@
     "directory-tree": "^2.1.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^4.0.1"
+  },
+  "engines": {
+    "node": "8.11.2"
   }
 }
