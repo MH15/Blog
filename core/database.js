@@ -102,6 +102,71 @@ class Database {
 		})
 	}
 
+	CreatePage(path) {
+		return new Promise((resolve, reject) => {
+			/* 
+			 - make markdown and json files ✔
+			 - add page entries to data.json ✔
+			 - update search index?s
+			*/
+
+
+			let json_template = fs.readFileSync(`_data/defaults/page.json`, 'utf8', { encoding: 'utf8' });
+			let markdown_template = fs.readFileSync(`_data/defaults/page.md`, 'utf8', { encoding: 'utf8' });
+			console.log(json_template)
+
+			fs.writeFileSync(`_data/pages/${path}.json`, json_template, { encoding: 'utf8' });
+			fs.writeFileSync(`_data/pages/${path}.md`, markdown_template, { encoding: 'utf8' });
+
+			// Add entries to page list
+			Unsure.loadFile(`_data/data.json`)
+			Unsure.setActiveFile(`_data/data.json`)
+			let pages = Unsure.Query("pages")
+			pages.push(path)
+			Unsure.Edit("pages", pages)
+			Unsure.saveFile(options)
+
+			resolve("New page created.")
+		})
+	}
+
+
+	DeletePage(path) {
+		return new Promise((resolve, reject) => {
+			/* 
+			 - delete markdown and json files ✔
+			 - remove page entries from data.json
+			 - update search index?s
+			*/
+
+			fs.unlink(`${path}.json`, (err) => {
+				if (err) throw err;
+				console.log(`${path}.json was deleted`);
+			})
+			fs.unlink(`${path}.md`, (err) => {
+				if (err) throw err;
+				console.log(`${path}.md was deleted`);
+			})
+
+			// Remove entries from page list
+			Unsure.loadFile(`_data/data.json`)
+			Unsure.setActiveFile(`_data/data.json`)
+			let pages = Unsure.Query("pages")
+			let new_pages = []
+			pages.forEach(page => {
+				if ('_data/pages/' + page != path) {
+					new_pages.push(page)
+				}
+			})
+			console.log(new_pages)
+			Unsure.Edit("pages", new_pages)
+			Unsure.saveFile(options)
+
+
+			resolve("Page Deleted")
+		})
+	}
+
 
 
 	RetrieveStaticPage(page_title) {
@@ -152,6 +217,9 @@ class Database {
 		})
 	}
 
+
+
+	// TODO: make a new file for authentication
 	// AUTHENTICATION STUFFS
 	AuthenticateUserCredentials(email, password) {
 		return new Promise((resolve, reject) => {
@@ -191,14 +259,3 @@ class Database {
 
 module.exports = new Database()
 
-
-// function exitHandler(options, err) {
-//     if (options.cleanup) console.log('clean');
-//     if (err) console.log(err.stack);
-//     if (options.exit) process.exit();
-// }
-
-
-// save info to stats.json when we exit
-// process.on('SIGINT', db.cleanup.bind(null, {exit:true}));
-// process.on('exit', db.cleanup.bind(null,{cleanup:true}));

@@ -10,6 +10,14 @@
   grid-column: sidebar; }
   .editor-sidebar #tree_container {
     width: 100%; }
+  .editor-sidebar input {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 2vh;
+    line-height: 2vh; }
+  .editor-sidebar input::placeholder {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 2vh;
+    line-height: 2vh; }
 
 .json-editor {
   grid-row: all;

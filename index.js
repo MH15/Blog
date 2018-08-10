@@ -247,9 +247,22 @@ server.route({
 	}
 })
 
+
 server.route({
 	method: 'POST',
-	path: '/edit/save_file',
+	path: '/edit/new_page',
+	handler: async (request, h) => {
+		// dsb? name for thing?
+		console.log("Creating Page: " + request.payload.path)
+		let confirmation = await db.CreatePage(request.payload.path)
+		
+		return confirmation
+	}
+})
+
+server.route({
+	method: 'POST',
+	path: '/edit/save_page',
 	handler: async (request, h) => {
 		// dsb? name for thing?
 		console.log("Saving file: " + request.payload.path)
@@ -259,6 +272,17 @@ server.route({
 	}
 })
 
+server.route({
+	method: 'POST',
+	path: '/edit/delete_page',
+	handler: async (request, h) => {
+		// dsb? name for thing?
+		console.log("Deleting Page: " + request.payload.path)
+		let confirmation = await db.DeletePage(request.payload.path)
+		
+		return confirmation
+	}
+})
 
 // load static pages ya know
 const static_page_routes = require('./core/static_page_routes')
