@@ -7,14 +7,14 @@ const dirTree = require('directory-tree');
 global.Unsure = new unsure(__dirname)
 global.dirname = __dirname
 
-
+const PORT = process.env.PORT || 3000
 
 // my libs
 const db = require('./core/database')
 const render = require('./core/render')
 
 const server = Hapi.server({
-	port: 3000,
+	port: PORT,
 	host: 'localhost'
 });
 
