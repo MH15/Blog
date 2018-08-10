@@ -1,1 +1,1 @@
-*SkimptDuck* is king. This has always been known. Also, Peter be hatin.
+*SkimptDuck*. This has always been known. Also, Peter be hatin.
