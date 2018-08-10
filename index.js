@@ -14,8 +14,7 @@ const db = require('./core/database')
 const render = require('./core/render')
 
 const server = Hapi.server({
-	port: PORT,
-	host: 'localhost'
+	port: PORT
 });
 
 let yar_options = {
