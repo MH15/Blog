@@ -8,9 +8,15 @@ let render = (data) => {
 }
 
 class Render {
-	ejs(data) {
+	// if a second argument is provided, a base template other
+	// than 'template.ejs' is used
+	ejs(data, alternate_template) {
 		return new Promise((resolve, reject) => {
-			fs.readFile('views/template.ejs', "utf-8", (err, body) => {
+			let file = 'views/template.ejs'
+			if (alternate_template != undefined) {
+				file = alternate_template
+			}
+			fs.readFile(file, "utf-8", (err, body) => {
 				if (err) {
 					reject(err)
 				}

@@ -88,17 +88,28 @@ class Database {
 			});
 		})
 	}
-	SaveFile(path, content) {
+	SavePage(path, json, markdown) {
 		return new Promise((resolve, reject) => {
-			fs.writeFile(path, JSON.stringify(content), (err, data) => {
+			let globalErr = null
+			fs.writeFile(path + '.json', JSON.stringify(json), 'utf8', (err, data) => {
 				if (err) {
 					console.log(err)
-					reject(err)
+					globalErr = err
 				}
 				// TODO: reload relevant Unsure instances to update the 
 				// pages edited without restarting the server
-				resolve("File Save Success!")
-			});
+			})
+			fs.writeFile(path + '.md', markdown, 'utf8', (err, data) => {
+				if (err) {
+					console.log(err)
+					globalErr = err
+				}
+				// TODO: reload relevant Unsure instances to update the 
+				// pages edited without restarting the server
+			})
+			
+			resolve("File Save Success!")
+
 		})
 	}
 

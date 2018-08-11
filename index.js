@@ -265,7 +265,7 @@ server.route({
 	handler: async (request, h) => {
 		// dsb? name for thing?
 		console.log("Saving file: " + request.payload.path)
-		let confirmation = await db.SaveFile(request.payload.path, request.payload.content)
+		let confirmation = await db.SavePage(request.payload.path, request.payload.json, request.payload.markdown)
 		
 		return confirmation
 	}

@@ -11,7 +11,7 @@ class editor_routes {
 		const page_body = await render.ejs({
 			e: retrieved_page,
 			dirname: global.dirname
-		})
+		}, 'views/edit.ejs')
 	    const state = request.yar.get('state')
 	    // if authenticated, display the editor screen
 	    // else redirect to login
