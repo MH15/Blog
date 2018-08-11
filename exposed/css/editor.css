@@ -6,7 +6,7 @@
   grid-template-rows: [all] 94vh [status] 6vh; }
 
 .shell * {
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Source Sans Pro', sans-serif; }
 
 .editor-sidebar {
   grid-row: all;
@@ -15,7 +15,10 @@
   border-top: none;
   border-left: 2px solid #3883fa; }
   .editor-sidebar #tree_container {
-    width: 100%; }
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    padding: 5px; }
   .editor-sidebar input {
     font-family: 'Roboto', sans-serif !important;
     font-size: 2vh;
@@ -99,13 +102,27 @@
     height: 36px;
     color: white;
     border-radius: 0 !important;
-    border: none !important; }
+    border: none !important;
+    display: flex;
+    padding-top: 2px;
+    padding-bottom: 2px; }
     .markdown-editor .editor-toolbar a {
       color: white !important;
-      opacity: 0.8 !important; }
+      opacity: 0.8 !important;
+      width: 26px;
+      height: 26px;
+      margin: 2px;
+      margin-left: 2px;
+      margin-right: 2px;
+      border-radius: 2px !important; }
     .markdown-editor .editor-toolbar a.active, .markdown-editor .editor-toolbar a:hover {
       background-color: rgba(255, 255, 255, 0.2) !important;
       border: 1px solid rgba(255, 255, 255, 0.4) !important; }
+    .markdown-editor .editor-toolbar a:before {
+      line-height: 26px; }
+    .markdown-editor .editor-toolbar i.separator {
+      margin: 8px 6px;
+      opacity: 0.6; }
   .markdown-editor .editor-toolbar:before {
     margin-bottom: 0; }
   .markdown-editor .editor-statusbar {
@@ -125,4 +142,6 @@
   grid-column: 1 / 4;
   grid-row: status;
   background: #ffd866;
-  line-height: 6vh; }
+  line-height: 6vh;
+  display: flex;
+  padding-left: 6px; }

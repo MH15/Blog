@@ -15,6 +15,13 @@ class Editor {
 			newPageURL: document.querySelector("#newPageURL")
 		}
 
+		this.outputs = {
+			statusMessage: document.querySelector('#statusMessage')
+		}
+
+		this.messages = []	
+		this.s = 0	
+
 
 		var options = {
 			mode: 'tree',
@@ -38,7 +45,28 @@ class Editor {
 			"string": "Hello World"
 		}
 		this.jsonEditor = new JSONEditor(this.controls.jsonEditor, options, sample)
-		this.simplemde = new SimpleMDE({ element: document.querySelector("#simplemde") })
+		this.simplemde = new SimpleMDE({ 
+			element: document.querySelector("#simplemde"),
+			toolbar: [
+				"bold",
+				"italic",
+				"heading",
+				"|",
+				"quote",
+				"code",
+				"unordered-list",
+				"ordered-list",
+				"|", 
+				"link",
+				"image",
+				"|",
+				"preview",
+				"guide"
+			],
+			renderingConfig: {
+				codeSyntaxHighlighting: true,
+			}
+		})
 
 
 	}
@@ -73,17 +101,33 @@ class Editor {
 		if (data.extension == '.json') {
 			// strip file extension
 			let adjustedPath = data.path.replace(/\.[^/.]+$/, "")
-			console.log(adjustedPath)
-			let content = await eServer.Post('/edit/open_file', {path: adjustedPath}, 'json')
-			console.log(content)
-			this.jsonEditor.setText(JSON.stringify(content.json))
-			if (content.markdown == undefined) {
+			let result = await eServer.Post('/edit/open_file', {path: adjustedPath}, 'json')
+			this.PrintStatus('Page Loaded', result)
+			this.jsonEditor.setText(JSON.stringify(result.json))
+			if (result.markdown == undefined) {
 				
 			}
-			this.simplemde.value(content.markdown)
+			this.simplemde.value(result.markdown)
 		}
 		if (data.extension == '.md') {
 			console.log('issa markdown file biotches')
 		}
+	}
+
+	PrintStatus(message, details) {
+		this.messages.unshift({
+			message: message,
+			details: details
+		})
+		// this.outputs.statusMessage.innerHTML = message
+	}
+
+	StatusUpdate() {
+		let current_messages = editor.messages
+		// console.log(current_messages)
+
+		editor.outputs.statusMessage.innerHTML = editor.messages[0].message
+
+		// console.log(this.s)
 	}
 }

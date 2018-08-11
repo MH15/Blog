@@ -1,4 +1,5 @@
 // editor
+let STATUS_UPDATE_RATE = 500
 let eServer = new EditServer()
 let editor = new Editor()
 
@@ -29,11 +30,12 @@ editor.TreeInit(selectCallback)
 editor.controls.newPage.addEventListener('click', async () => {
 	// send URL of new page back to server
 	let newPageURL = editor.inputs.newPageURL.value
-	console.log(newPageURL)
 	let confirmation = await eServer.Post('/edit/new_page', {
 		path: newPageURL,
 	}, 'text')
 	console.log(confirmation)
+
+	editor.PrintStatus('New Page Created', confirmation)
 
 	// TODO: update tree to show everything. Try to avoid
 	// the easy way out - just refreshing the page
@@ -48,6 +50,7 @@ editor.controls.savePage.addEventListener('click', async () => {
 		markdown: editor.simplemde.value()
 	}, 'text')
 	console.log(confirmation)
+	editor.PrintStatus('Page Saved', confirmation)
 })
 
 editor.controls.deletePage.addEventListener('click', async () => {
@@ -57,8 +60,12 @@ editor.controls.deletePage.addEventListener('click', async () => {
 		path: adjustedPath
 	}, 'text')
 	console.log(confirmation)
+	editor.PrintStatus('Page Deleted', confirmation)
 })
 
+
+// update status every second
+setInterval(editor.StatusUpdate, STATUS_UPDATE_RATE)
 
 
 // async function TreeUpdate() {

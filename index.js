@@ -1,5 +1,6 @@
 const Hapi = require('hapi')
 const ejs = require('ejs')
+const fs = require('fs')
 const unsure = require('unsure')
 const Fuse = require('fuse.js')
 const Joi = require('joi')
@@ -223,6 +224,30 @@ server.route({
     	// get file tree for editor
 		// THIS IS A PROTOTYPE
 		const filteredTree = dirTree('_data/', {extensions:/\.json/})
+
+        filteredTree.children.sort((a, b) => {
+          if (a.type < b.type) {
+            return -1;
+          }
+
+          if (a.type > b.type) {
+            return 1;
+          }
+
+          if (a.type === b.type) {
+            if (a.name < b.name) {
+              return -1;
+            } 
+            else if (a.name > b.name) {
+              return 1;
+            }
+          }
+
+          return 0;
+        })
+        console.log(filteredTree)
+
+
 		// TODO: sort so folders are first
 		return filteredTree
 
