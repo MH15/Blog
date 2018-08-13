@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/public/css/footer.css">
 <!-- syntax highlighting -->
 <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github-gist.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/xcode.min.css">
 
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css"> -->
 <script>hljs.initHighlightingOnLoad();</script>
@@ -15,9 +15,11 @@
 	<div class="header">
 		<h1 class="article-title"><%= e.title%></h1>
 		<div class="published-date">Published <%= e.date_published %></div>
+		<!-- TODO: if edit date is later, display that -->
 	</div>
 	<div class="image article">
-		<div class="inset" style="background-image: url(<%= e.photo_url %>)"></div>
+		<!-- <div class="inset" style="background-image: url()"></div> -->
+		<img src="<%= e.photo_url %>">
 	</div>
 
 

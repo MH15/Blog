@@ -90,7 +90,10 @@ class Database {
 	}
 	SavePage(path, json, markdown) {
 		return new Promise((resolve, reject) => {
-			let globalErr = null
+			// console.log(json)
+			// let globalErr = null
+			// let edited_json = JSON.parse(json)
+			// edited_json.date_edited = new Date().toLocaleString()
 			fs.writeFile(path + '.json', JSON.stringify(json), 'utf8', (err, data) => {
 				if (err) {
 					console.log(err)
@@ -121,10 +124,19 @@ class Database {
 			 - update search index?s
 			*/
 
+			console.log("EDIT START")
 
-			let json_template = fs.readFileSync(`_data/defaults/page.json`, 'utf8', { encoding: 'utf8' });
+			let json_template = JSON.parse(fs.readFileSync(`_data/defaults/page.json`, 'utf8', { encoding: 'utf8' }))
 			let markdown_template = fs.readFileSync(`_data/defaults/page.md`, 'utf8', { encoding: 'utf8' });
-			console.log(json_template)
+			json_template.url = path
+			json_template.date_published = new Date().toLocaleString()
+			json_template.date_edited = new Date().toLocaleString()
+			json_template.template = "article"
+			json_template.author_url = "author" // TODO: get this data from the login cookie
+			
+
+			json_template.date_edited = new Date().toLocaleString()
+			json_template = JSON.stringify(json_template)
 
 			fs.writeFileSync(`_data/pages/${path}.json`, json_template, { encoding: 'utf8' });
 			fs.writeFileSync(`_data/pages/${path}.md`, markdown_template, { encoding: 'utf8' });

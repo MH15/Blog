@@ -6,6 +6,24 @@
 	grid-template-rows: [splash] auto [footer] $padding
 
 
+@media screen and (orientation: portrait)
+	.else
+		grid-template-columns: [all] auto 
+		grid-template-rows: [image] 40vh [negative-space-2] 5.2vw [splash] auto [footer] $padding
+	.image
+		grid-column: all
+		grid-row: splash
+		margin-top: 0 !important
+		padding-left: 0 !important
+		padding-right: $sidebar-width-mobile !important
+		padding-top: 2vh !important
+	.splash
+		grid-column: all
+		grid-row: image	
+	header
+		grid-column: 3 / 6
+	footer
+		padding-right: $sidebar-width-mobile !important
 .splash
 	grid-column: splash
 	grid-row: splash

@@ -1,1 +1,72 @@
-{"search_data":[{"title":"Article about that one thingy/thang","article_url":"thingy","author":"Peter Hall","author_url":"peter-hall","tags":["test","north"],"date_edited":"2018-6-21 19:46:53"},{"title":"Brits","article_url":"brit","author":"Matthew Hall","author_url":"matthew-hall","tags":["brit","mate"],"date_edited":"2018-7-2 19:46:53"},{"title":"Second Piece","article_url":"second-piece","author":"Matthew Hall","author_url":"matthew-hall","tags":["second","article"],"date_edited":"2018-7-2 19:46:53"},{"title":"Oh hi marrhk","article_url":"mark-and-tommy","author":"Matthew Hall","author_url":"matthew-hall","tags":["hollywood","wisseu"],"date_edited":"2018-7-22 19:46:53"},{"title":"New Page","article_url":"new_page","author":"Matt Hall","author_url":"matt_hall","tags":[],"date_edited":1},{"title":"","article_url":"","author":"","author_url":"","tags":[],"date_edited":""}]}
+{
+    "search_data": [
+        {
+            "title": "Article about that one thingy/thang",
+            "article_url": "thingy",
+            "author": "Peter Hall",
+            "author_url": "peter-hall",
+            "tags": [
+                "test",
+                "north"
+            ],
+            "date_edited": "2018-6-21 19:46:53"
+        },
+        {
+            "title": "Brits",
+            "article_url": "brit",
+            "author": "Matthew Hall",
+            "author_url": "matthew-hall",
+            "tags": [
+                "brit",
+                "mate"
+            ],
+            "date_edited": "2018-7-2 19:46:53"
+        },
+        {
+            "title": "Second Piece",
+            "article_url": "second-piece",
+            "author": "Matthew Hall",
+            "author_url": "matthew-hall",
+            "tags": [
+                "second",
+                "article"
+            ],
+            "date_edited": "2018-7-2 19:46:53"
+        },
+        {
+            "title": "Oh hi marrhk",
+            "article_url": "mark-and-tommy",
+            "author": "Matthew Hall",
+            "author_url": "matthew-hall",
+            "tags": [
+                "hollywood",
+                "wisseu"
+            ],
+            "date_edited": "2018-7-22 19:46:53"
+        },
+        {
+            "title": "New Page",
+            "article_url": "new_page",
+            "author": "Matt Hall",
+            "author_url": "matt_hall",
+            "tags": [],
+            "date_edited": 1
+        },
+        {
+            "title": "",
+            "article_url": "",
+            "author": "",
+            "author_url": "",
+            "tags": [],
+            "date_edited": ""
+        },
+        {
+            "title": "",
+            "article_url": "tits",
+            "author": "",
+            "author_url": "author",
+            "tags": [],
+            "date_edited": "2018-8-12 16:18:38"
+        }
+    ]
+}

@@ -13,3 +13,9 @@ markdown(string) {
 	return out
 }
 ```
+
+```python
+a = 1
+print(10)
+
+```

@@ -66,11 +66,20 @@ article.middle
 
 	.content
 		column-count: 1
-		width: 45vw
+		width: 100%
 		line-height: 1.6;
 		font-family: "Crimson Text";
 		font-size: 2.75vh;
 		font-weight: 100;
+
+		img
+			margin-bottom: 6vh
+
+	img
+		width: 100%
+		border-radius: 3px 
+		// background-size: cover
+		transition: box-shadow 300ms ease-out;
 
 .image.article
 	width: 100%
@@ -80,6 +89,10 @@ article.middle
 	.inset
 		// background: url('../../public/img/mountains.jpg')
 
+
+@media screen and (orientation: portrait)
+	article.middle
+		width: 75vw
 
 
 

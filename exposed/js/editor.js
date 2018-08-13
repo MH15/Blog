@@ -20,9 +20,7 @@ function selectCallback(e) {
 	// decide if we load the markdown or json editor
 	// console.log(editor)
 	// scope necessitates that we don't use 'this' here
-	editor.HandleEditorLoad(e.data)
-	// UpdateJSONEditor(e.data.path)
-	CURRENT_FILE = e.data.path
+
 }
 
 editor.TreeInit(selectCallback)
@@ -30,6 +28,7 @@ editor.TreeInit(selectCallback)
 editor.controls.newPage.addEventListener('click', async () => {
 	// send URL of new page back to server
 	let newPageURL = editor.inputs.newPageURL.value
+	editor.PrintStatus('Loading')
 	let confirmation = await eServer.Post('/edit/new_page', {
 		path: newPageURL,
 	}, 'text')
@@ -39,6 +38,8 @@ editor.controls.newPage.addEventListener('click', async () => {
 
 	// TODO: update tree to show everything. Try to avoid
 	// the easy way out - just refreshing the page
+
+	editor.TreeInit(selectCallback)
 })
 
 editor.controls.savePage.addEventListener('click', async () => {
@@ -61,6 +62,7 @@ editor.controls.deletePage.addEventListener('click', async () => {
 	}, 'text')
 	console.log(confirmation)
 	editor.PrintStatus('Page Deleted', confirmation)
+	editor.TreeInit(selectCallback)
 })
 
 

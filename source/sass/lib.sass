@@ -24,6 +24,16 @@ div.grid-container
 	grid-template-columns: [sidebar] $sidebar-width [negative-space-1] 2.1vw [else] auto [negative-space-2] 5.2vw [image] 50vw
 	grid-template-rows: [padding] $padding [header] $title-height [all] auto [footer] $padding [padding] $padding
 
+
+@media screen and (orientation: portrait)
+	div.grid-container
+		grid-template-columns: [sidebar] $sidebar-width-mobile [negative-space-1] 2.1vw [else] auto [negative-space-2] 5.2vw [image] 50vw
+	.sidebar
+		width: $sidebar-width-mobile !important
+	#menu
+		width: $sidebar-width-mobile !important
+
+
 #SHADE
 	z-index: 10
 	width: 100%

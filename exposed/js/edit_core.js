@@ -77,7 +77,12 @@ class Editor {
 
 	async TreeInit(select_callback) {
 
-
+		// if tree is being updated, old tree must be removed
+		let tree_container = document.querySelector('#tree_container')
+		while (tree_container.hasChildNodes()) {
+			tree_container.removeChild(tree_container.lastChild);
+		}
+		console.log('tree write')
 
 		let file_tree = await eServer.Post('/request_file_tree', {}, 'json')
 
@@ -85,7 +90,9 @@ class Editor {
 		this.tree = new TreeView(file_tree.children, 'tree_container');
 		
 		editor.tree.on('select', (e) => {
-			select_callback(e)
+			editor.HandleEditorLoad(e.data)
+			// UpdateJSONEditor(e.data.path)
+			CURRENT_FILE = e.data.path
 		});
 
 		this.controls.expandTree.onclick = function () { editor.tree.expandAll(); };
@@ -115,10 +122,12 @@ class Editor {
 	}
 
 	PrintStatus(message, details) {
-		this.messages.unshift({
-			message: message,
-			details: details
-		})
+		// this.messages.unshift({
+		// 	message: message,
+		// 	details: details
+		// })
+		this.outputs.statusMessage.innerHTML = message
+
 		// this.outputs.statusMessage.innerHTML = message
 	}
 
@@ -126,7 +135,7 @@ class Editor {
 		let current_messages = editor.messages
 		// console.log(current_messages)
 
-		editor.outputs.statusMessage.innerHTML = editor.messages[0].message
+		// editor.outputs.statusMessage.innerHTML = editor.messages[0].message
 
 		// console.log(this.s)
 	}
