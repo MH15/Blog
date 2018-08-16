@@ -162,7 +162,24 @@ div.grid-container {
   .sidebar {
     width: 10vw !important; }
   #menu {
-    width: 10vw !important; } }
+    width: 10vw !important; }
+  header {
+    grid-column: 3 / 6 !important; }
+  .menu-grid .parent {
+    flex-direction: column !important; }
+    .menu-grid .parent .rectangle {
+      height: 6vh !important;
+      line-height: 6vh; }
+      .menu-grid .parent .rectangle .menu-screen {
+        height: 6vh !important; }
+      .menu-grid .parent .rectangle .image-screen {
+        display: none; }
+  .menu-grid #s4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .menu-grid #s4 a {
+      width: auto !important; } }
 
 #SHADE {
   z-index: 10;
@@ -334,20 +351,28 @@ div.else {
   padding-right: 9.6vw; }
   .search-grid .results {
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    overflow: hidden; }
     .search-grid .results .search_result {
       font-size: 3vh;
       line-height: 2;
       display: flex; }
       .search-grid .results .search_result .title {
         flex: 1;
-        font-size: 3.5vh; }
+        font-size: 3.5vh;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 7vh;
+        max-height: 7vh;
+        min-width: 20%; }
       .search-grid .results .search_result .author {
-        cursor: pointer; }
+        cursor: pointer;
+        line-height: 7vh; }
       .search-grid .results .search_result .date_edited {
         opacity: 0.5;
         font-weight: 400;
-        padding-left: 2vw; }
+        padding-left: 2vw;
+        line-height: 7vh; }
 
 .image {
   display: flex; }

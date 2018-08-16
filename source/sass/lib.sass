@@ -33,7 +33,27 @@ div.grid-container
 	#menu
 		width: $sidebar-width-mobile !important
 
+	header
+		grid-column: 3 / 6 !important
 
+	.menu-grid
+		.parent
+			flex-direction: column !important
+
+			.rectangle
+				height: $menu-title-height-mobile !important
+				line-height: $menu-title-height-mobile
+				.menu-screen
+					height: $menu-title-height-mobile !important
+				.image-screen
+					display: none
+		#s4
+			display: flex
+			flex-direction: row
+			justify-content: space-between
+
+			a
+				width: auto !important
 #SHADE
 	z-index: 10
 	width: 100%
@@ -251,6 +271,7 @@ div.else
 	.results
 		width: 100%
 		height: 100%
+		overflow: hidden
 
 		.search_result
 			font-size: 3vh
@@ -260,14 +281,21 @@ div.else
 			.title
 				flex: 1
 				font-size:	3.5vh
+				overflow: hidden
+				text-overflow: ellipsis
+				line-height: 7vh
+				max-height: 7vh
+				min-width: 20%
 
 			.author
 				cursor: pointer
+				line-height: 7vh
 
 			.date_edited
 				opacity: 0.5
 				font-weight: 400
 				padding-left: 2vw
+				line-height: 7vh
 
 
 

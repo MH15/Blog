@@ -65,7 +65,7 @@ Server.search_box.addEventListener('input', async () => {
 		// add date edited
 		let date_edited = document.createElement('div')
 		date_edited.classList.add('date_edited')
-		date_edited.innerHTML = search_item.date_edited
+		date_edited.innerHTML = search_item.date_edited.split(" ")[0]
 		item.appendChild(date_edited)
 
 

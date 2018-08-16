@@ -18,6 +18,10 @@ const server = Hapi.server({
 	port: PORT
 });
 
+// words the average human reads per minute, according to
+// Wikipedia. Used for determining the '5 minute read' thing
+let WORDS_PER_MINUTE = 180
+
 let yar_options = {
     storeBlank: false,
     cookieOptions: {
@@ -108,6 +112,9 @@ server.route({
 		let markdown_string = await db.LoadMarkdown(request.params.name, "pages")
 		
 		retrieved_page.content = render.markdown(markdown_string)
+		let read_time = Math.floor(markdown_string.length / WORDS_PER_MINUTE)
+		retrieved_page.read_time = read_time
+		console.log(markdown_string)
 
 		const page_body = await render.ejs({
 			e: retrieved_page,
