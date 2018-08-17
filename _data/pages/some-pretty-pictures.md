@@ -1,6 +1,6 @@
 # Some pretty pictures
 Demonstrating the image-hover effect based on color palettes pulled from each picture.
-![image](/public/img/sunflower_front.jpg)
+![image](/public/img/newyork.jpg)
 ![image](/public/img/space.jpg)
 
 Lorem ipsum dolor amet cray health goth tumblr actually, umami pok pok scenester occupy polaroid cred PBR&B tumeric. Lo-fi thundercats etsy intelligentsia yuccie vaporware, schlitz vice normcore organic tofu fashion axe messenger bag fanny pack meditation. Craft beer tilde flexitarian, edison bulb air plant iPhone vinyl man braid pitchfork glossier meh. Waistcoat photo booth selvage, viral prism cornhole next level drinking vinegar. Master cleanse letterpress chambray vaporware. Lyft literally viral kitsch hell of pug YOLO helvetica. Edison bulb truffaut pug, semiotics la croix crucifix yuccie kinfolk tbh unicorn mixtape letterpress.
