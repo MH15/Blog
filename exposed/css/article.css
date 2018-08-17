@@ -206,6 +206,7 @@ article.middle {
     font-size: 2.75vh;
     font-weight: 100; }
     article.middle .content img {
+      margin-top: 2vh;
       margin-bottom: 6vh; }
   article.middle img {
     width: 100%;

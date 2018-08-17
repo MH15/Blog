@@ -1,8 +1,1 @@
-{
-    "title": "Credits",
-    "url": "credits",
-    "content": "<p>Thanks to these folks and their amazing open source projects</p><ul><li>a</li></ul>",
-    "template": "credits",
-  	"photo_url": "../../public/img/yellow_design.jpg",
-    "custom-css": ""
-}
+{"title":"Credits","url":"credits","content":"<p>Thanks to these folks and their amazing open source projects</p><ul><li>a</li></ul>","template":"credits","photo_url":"../../public/img/yellow_design.jpg","custom-css":""}

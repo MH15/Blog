@@ -12,6 +12,7 @@ class ui {
 		this.slide_items = document.querySelectorAll(".splash-wrapper")
 		this.slide_index_output = document.querySelector(".slide-index")
 
+
 		this.state = {
 			menu: false,
 			search: false,

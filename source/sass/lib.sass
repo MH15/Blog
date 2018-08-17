@@ -36,6 +36,9 @@ div.grid-container
 	header
 		grid-column: 3 / 6 !important
 
+		div.title
+			padding-left: 1vw
+
 	.menu-grid
 		.parent
 			flex-direction: column !important
@@ -47,6 +50,8 @@ div.grid-container
 					height: $menu-title-height-mobile !important
 				.image-screen
 					display: none
+		#s3
+			margin-bottom: 1vh
 		#s4
 			display: flex
 			flex-direction: row
@@ -54,6 +59,12 @@ div.grid-container
 
 			a
 				width: auto !important
+	.social-container
+		width: $sidebar-width-mobile !important
+
+// END MOBILE TECHNIQUES
+
+
 #SHADE
 	z-index: 10
 	width: 100%
@@ -87,6 +98,41 @@ div.grid-container
 		grid-row: padding
 	.bottom
 		grid-row: lower
+
+	.social-container
+		position: fixed
+		bottom: $padding
+		left: 0
+		width: $sidebar-width
+		height: auto
+		line-height: $title-height
+		text-align: center
+		display: flex
+		flex-direction: column
+		background: white
+		padding-top: 1vh
+		padding-bottom: 1vh
+
+		i
+			height: 6vh
+			line-height: 6vh
+			font-size: 24px
+			opacity: 0.6
+			transition: 300ms ease all
+			cursor: pointer
+			width: 100%
+		
+		i.fab:hover
+			opacity: 1.0
+		i.fab:active
+			transform: scale(0.9)
+
+		i#TWITTER:hover
+			color: rgb(29, 161, 242)
+		i#YOUTUBE:hover
+			color: rgb(204,24,30)
+		i#INSTAGRAM:hover
+			color: #CD4E77
 
 header
 	z-index: 1000
@@ -143,15 +189,8 @@ div.else
 	grid-column: else / 6
 	width: 100%
 	height: 100%
-	// grid-template-columns & grid-template-rows defined in included .ejs file
-
-
-
-
-
 
 // Search and Menu
-
 .menu-grid
 	z-index: 100
 	position: fixed

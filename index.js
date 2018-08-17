@@ -3,7 +3,6 @@ const ejs = require('ejs')
 const fs = require('fs')
 const unsure = require('unsure')
 const Fuse = require('fuse.js')
-const Joi = require('joi')
 const dirTree = require('directory-tree');
 global.Unsure = new unsure(__dirname)
 global.dirname = __dirname
@@ -114,7 +113,6 @@ server.route({
 		retrieved_page.content = render.markdown(markdown_string)
 		let read_time = Math.floor(markdown_string.length / WORDS_PER_MINUTE)
 		retrieved_page.read_time = read_time
-		console.log(markdown_string)
 
 		const page_body = await render.ejs({
 			e: retrieved_page,
@@ -147,18 +145,6 @@ server.route({
 })
 
 
-
-
-// Login
-let custom_fields = {
-  email     : Joi.string().email().required(), // Required
-  password  : Joi.string().required().min(6)   // minimum length 6 characters
-}
-
-// console.log(custom_fields)
-
-
-
 server.route({
     method: 'GET',
     path: '/login',
@@ -172,8 +158,6 @@ server.route({
 		return page_body
     }
 })
-
-
 
 
 server.route({
@@ -396,7 +380,7 @@ server.route({
 
 
 process.on('unhandledRejection', (err) => {
-	console.log(err)
+	// console.log(err)
 	process.exit(1)
 })
 

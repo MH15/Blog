@@ -61,10 +61,19 @@ class Database {
 		}
 	}
 
+	RetrieveStaticPage(page_title) {
+		Unsure.loadFile(`_data/static/${page_title}.json`)
+		Unsure.setActiveFile(`_data/static/${page_title}.json`)
+		
+		let query = Unsure.Query('.')
+		return query
+	}
+
 	// LoadMarkdown is based off of RetrievePage but includes the
 	// markdown rendering component
 	LoadMarkdown(page_title, type) {
 		// page_title is the filename, type is the directory
+		console.log(`_data/${type}/${page_title}.md`)
 		return new Promise((resolve, reject) => {
 			fs.readFile(`_data/${type}/${page_title}.md`, "utf-8", (err, body) => {
 				if (err) {
@@ -192,14 +201,6 @@ class Database {
 
 
 
-	RetrieveStaticPage(page_title) {
-		Unsure.loadFile(`_data/static/${page_title}.json`)
-		Unsure.setActiveFile(`_data/static/${page_title}.json`)
-		
-		let query = Unsure.Query('.')
-		return query
-	}
-
 	CreateSearchData() {
 		return new Promise((resolve, reject) => {
 			// get array of pages
@@ -218,7 +219,7 @@ class Database {
 				// add entry into the search data
 				// ignore Home page + do not add to search results
 				if (page_data.url == "/") return
-				console.log(page_data.article_url)
+				// console.log(page_data.article_url)
 				search_data.push({
 					title: page_data.title,
 					article_url: page_data.url,

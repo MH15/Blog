@@ -4,45 +4,39 @@ const fs = require('fs')
 
 class static_page_routes {
 	async about(request, h) {
-		console.log(request.path)
-
-		let retrieved_page = db.RetrieveStaticPage('about')
-		const page_body = await render.ejs({
-			e: retrieved_page,
-			dirname: global.dirname
-		})
-		return page_body
+		let subworked = await ref.allStaticPages(request.path)
+		return subworked
     }
 	async team(request, h) {
-		console.log(request.path)
-
-		let retrieved_page = db.RetrieveStaticPage('team')
-		const page_body = await render.ejs({
-			e: retrieved_page,
-			dirname: global.dirname
-		})
-		return page_body
+		let subworked = await ref.allStaticPages(request.path)
+		return subworked
     }
 	async credits(request, h) {
-		console.log(request.path)
-
-		let retrieved_page = db.RetrieveStaticPage('credits')
-		const page_body = await render.ejs({
-			e: retrieved_page,
-			dirname: global.dirname
-		})
-		return page_body
+		let subworked = await ref.allStaticPages(request.path)
+		return subworked
     }
 	async contact(request, h) {
-		console.log(request.path)
+		let subworked = await ref.allStaticPages(request.path)
+		return subworked
+    }
 
-		let retrieved_page = db.RetrieveStaticPage('contact')
-		const page_body = await render.ejs({
-			e: retrieved_page,
-			dirname: global.dirname
-		})
-		return page_body
+
+    // handle everything lol
+
+    allStaticPages(page_url) {
+    	return new Promise(async (resolve, reject) => {
+			let retrieved_page = db.RetrieveStaticPage(page_url)
+			let markdown_string = await db.LoadMarkdown(page_url, "static")
+			retrieved_page.content = render.markdown(markdown_string)
+			const page_body = await render.ejs({
+				e: retrieved_page,
+				dirname: global.dirname
+			})
+			resolve(page_body)
+    	})
     }
 }
 
-module.exports = new static_page_routes()
+let ref = new static_page_routes()
+
+module.exports = ref

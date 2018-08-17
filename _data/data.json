@@ -2,12 +2,9 @@
     "pages": [
         "home",
         "thingy",
-        "brit",
-        "second-piece",
-        "mark-and-tommy",
-        "new_page",
-        "test",
-        "with_image"
+        "code-embeds",
+        "some-pretty-pictures",
+        "new_page"
     ],
     "authors": [
         "peter-hall",

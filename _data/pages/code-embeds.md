@@ -1,9 +1,7 @@
-SkimptDuck is brit. 
-
 Officia sint quis et aute minim consequat **ex dolore** cupidatat.
 
 And here's a quote:
-> Hey bigot
+> Hey world
 
 And here's some code
 ```javascript

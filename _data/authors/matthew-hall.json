@@ -1,14 +1,1 @@
-{
-    "title": "Matthew Hall",
-    "url": "matthew-hall",
-    "date_published": "2018-7-10 19:46:53",
-    "date_edited": "2018-7-10 19:46:53",
-    "author_url": "matthew-hall",
-    "author_bio": "Matthew Hall is a thot. Culpa dolore mollit ut minim nulla commodo occaecat dolore commodo anim nulla ut minim exercitation id quis in adipisicing laborum.",
-    "photo_url": "../../public/img/peter-hall.jpg",
-    "template": "author",
-    "custom_css": "",
-    "tags": [
-        "author"
-    ]
-}
+{"title":"Matthew Hall","url":"matthew-hall","date_published":"2018-7-10 19:46:53","date_edited":"2018-7-10 19:46:53","author_url":"matthew-hall","author_bio":"Matthew Hall is a person. Culpa dolore mollit ut minim nulla commodo occaecat dolore commodo anim nulla ut minim exercitation id quis in adipisicing laborum.","photo_url":"../../public/img/peter-hall.jpg","template":"author","custom_css":"","tags":["author"]}

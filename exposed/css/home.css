@@ -153,13 +153,13 @@ a.logo:active {
     grid-row: splash;
     margin-top: 0 !important;
     padding-left: 0 !important;
-    padding-right: 10vw !important;
+    padding-right: 12vw !important;
     padding-top: 2vh !important; }
   .splash {
     grid-column: all;
     grid-row: image; }
   footer {
-    padding-right: 10vw !important; } }
+    padding-right: 12vw !important; } }
 
 .splash {
   grid-column: splash;

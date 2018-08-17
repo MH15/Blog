@@ -210,3 +210,9 @@ article.middle {
   width: 100%;
   height: 60vh;
   margin-bottom: 4vh; }
+
+@media screen and (orientation: portrait) {
+  article.middle {
+    width: 75vw; }
+    article.middle .content {
+      width: 100%; } }
